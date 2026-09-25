@@ -15,8 +15,9 @@ params:
     link: https://semgrep.dev/
     logo: /images/semgrep-logo.png
   event_speakers:
-  - name: 'Moderator: Edward Frye'
-    description: 'Panelists: Jessica Hoffman & Larry Whiteside Jr.'
+  - name: Edward Frye
+  - name: Jessica Hoffman
+  - name: Larry Whiteside Jr.
 ---
 
 The role of the CISO has evolved far beyond technical controls and compliance checklists — today’s security leaders must inspire trust, enable business growth, and shape organizational culture in an increasingly complex threat landscape.

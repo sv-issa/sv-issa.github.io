@@ -4,7 +4,7 @@ draft: false
 date: 2026-04-30 21:38:14-07:00
 layout: meetings
 params:
-  event_date: Tuesday, July 21, 2026
+  event_date: 2026-07-21
   event_time_start: 5:30pm
   event_time_end: 8:00pm
   event_rsvp_url: https://luma.com/n2tmabxa

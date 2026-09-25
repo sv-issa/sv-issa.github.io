@@ -4,19 +4,20 @@ draft: false
 date: 2025-04-24 21:44:58-07:00
 layout: meetings
 params:
-  event_date: Wednesday, May 14, 2025
+  event_date: 2025-05-14
   event_time_start: 5:30pm
   event_time_end: 8:00pm
   event_rsvp_url: https://lu.ma/s52adtq9
   event_location: NetApp
   event_address: 3060 Olsen Dr, San Jose, CA 95128, USA
   event_speakers:
-  - name: Supervisory Special Agent Scott Hellman, FBI
+  - name: Scott Hellman
+    title: Supervisory Special Agent, FBI
     description: |-
       With over 17 years of experience, Scott leads a team of cybercrime investigators in the San Francisco Bay Area. His work focuses on criminal and national security cyber threats. He actively builds community partnerships while disrupting the criminal ecosystems behind today’s threats. Scott holds a J.D. and a Bachelor's in chemistry.
-
-      Marnie Wilking, Chief Security Officer, Booking.com
-
+  - name: Marnie Wilking
+    title: Chief Security Officer, Booking.com
+    description: |-
       Marnie oversees global Cybersecurity, Safety, and Fraud programs. Her prior roles include Global CISO at Wayfair and Orion Health, and security leadership at Wells Fargo Mortgage. Marnie serves on multiple boards including Robert Half International and the Cybercrime Support Network. She brings a strategic lens to securing e-commerce, fintech, and healthcare platforms globally.
 ---
 

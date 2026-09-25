@@ -4,7 +4,7 @@ draft: false
 date: 2026-01-31 19:21:07-08:00
 layout: meetings
 params:
-  event_date: Tuesday, February 17, 2026
+  event_date: 2026-02-17
   event_time_start: 5:30pm
   event_time_end: 8:00pm
   event_rsvp_url: https://luma.com/cxum13uc

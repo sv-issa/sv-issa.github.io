@@ -4,7 +4,7 @@ draft: false
 date: 2025-05-21 21:33:52-07:00
 layout: meetings
 params:
-  event_date: Tuesday, June 17, 2025
+  event_date: 2025-06-17
   event_time_start: 5:30pm
   event_time_end: 8:00pm
   event_rsvp_url: https://lu.ma/sketp59d

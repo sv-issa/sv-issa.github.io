@@ -1,0 +1,50 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+
+  {{ if .Content }}
+    {{ .Content }}
+  {{ end }}
+
+  {{ $futureOnly := .Params.future_only | default false }}
+  {{ $dateSort := .Params.event_date_sort | default "asc" }}
+  {{ $today := now | time.Format "2006-01-02" }}
+
+  {{ $meetings := where site.RegularPages "Type" "meetings" }}
+
+  {{ if $futureOnly }}
+    {{ $meetings = where $meetings "Section" "meetings" }}
+    {{ $meetings = where $meetings "Params.event_date" ">" $today }}
+  {{ else }}
+    {{ $meetings = where $meetings "Section" "meetings" }}
+    {{ $meetings = where $meetings "Params.event_date" "<=" $today }}
+  {{ end }}
+
+  {{ if $dateSort }}
+    {{ $meetings = sort $meetings "Params.event_date" $dateSort }}
+  {{ end }}
+
+  {{ if (gt (len $meetings) 0) }}
+    <h2>{{ if $futureOnly }}Upcoming{{ else }}Past{{ end }} Meetings</h2>
+
+    <ul>
+    {{ range $meetings }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        <p>{{ .Params.event_date | time.Format ":date_full" }}</p>
+        {{- $speakerNames := apply (.Params.event_speakers) "index" "." "name" -}}
+        {{- if gt (len $speakerNames) 0 -}}
+          <p>{{ if eq (len $speakerNames) 1 }}Speaker{{ else }}Speakers{{ end }}: {{ delimit $speakerNames ", " }}</p>
+        {{- end -}}
+        {{- $sponsorNames := apply (.Params.event_sponsors) "index" "." "name" -}}
+        {{- if gt (len $sponsorNames) 0 -}}
+          <p>{{ if eq (len $sponsorNames) 1 }}Sponsor{{ else }}Sponsors{{ end }}: {{ delimit $sponsorNames ", " }}</p>
+        {{- end -}}
+        {{ .Summary }}
+      </li>
+    {{ end }}
+    </ul>
+  {{ else }}
+    <p>No {{ if $futureOnly }}upcoming{{ else }}past{{ end }} meetings found.</p>
+  {{ end }}
+
+{{ end }}

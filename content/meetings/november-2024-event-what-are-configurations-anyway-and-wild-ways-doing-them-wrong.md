@@ -4,7 +4,7 @@ draft: false
 date: 2024-09-28 23:59:46-07:00
 layout: meetings
 params:
-  event_date: Tuesday, November 19, 2024
+  event_date: 2024-11-19
   event_time_start: 5:30pm
   event_time_end: 8:00pm
   event_rsvp_url: https://lu.ma/rx63acc5

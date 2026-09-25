@@ -4,7 +4,7 @@ draft: false
 date: 2024-12-03 18:10:20-08:00
 layout: meetings
 params:
-  event_date: Thursday, December 12, 2024
+  event_date: 2024-12-12
   event_time_start: 5:00pm
   event_time_end: 9:00pm
   event_rsvp_url: https://lu.ma/ykd760s5

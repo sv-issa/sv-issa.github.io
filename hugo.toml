@@ -35,14 +35,15 @@ enableGitInfo = true
     name = 'Meetings'
     weight = 30
   [[menus.main]]
-    name = 'Upcoming Meeting'
-    weight = 1
+    name = 'Upcoming Meetings'
+    pageRef = '/meetings/upcoming'
     parent = 'Meetings'
+    weight = 1
   [[menus.main]]
     name = 'Past Meetings'
-    weight = 2
-    pageRef = '/meetings'
+    pageRef = '/meetings/past'
     parent = 'Meetings'
+    weight = 2
 
 
   [[menus.main]]

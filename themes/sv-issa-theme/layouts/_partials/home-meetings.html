@@ -1,19 +1,29 @@
-<h2>Upcoming Meetings</h2>
+<h2>Upcoming Meeting</h2>
 
-<p>The chapter board strives to provide the most up to date
-information on upcoming events and meetings, however it appears that
-all the meetings have passed and future meetings are not published
-yet. We are working to correct this so please check back here
-shortly.</p>
+{{ $today := now | time.Format "2006-01-02" }}
+{{ $meetings := where site.RegularPages "Type" "meetings" }}
+{{ $meetings = where $meetings "Params.event_date" ">" $today }}
+{{ $meetings = sort $meetings "Params.event_date" "asc" }}
+{{ $nextMeeting := first 1 $meetings }}
 
-<p>Typically, the chapter meetings will fall on the Third Tuesday
-evening of the month between 6:00 PM - 8:30 PM and dinner is usually
-provided.</p>
-
-  {{ $meetings := where site.RegularPages "Type" "meetings" }}
-  {{ range $meetings }}
+{{ if (gt (len $nextMeeting) 0) }}
+  {{ range $nextMeeting }}
     <section>
       <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+      <p>{{ .Params.event_date | time.Format ":date_full" }}</p>
+      {{- $speakerNames := apply (.Params.event_speakers) "index" "." "name" -}}
+      {{- if gt (len $speakerNames) 0 -}}
+        <p>{{ if eq (len $speakerNames) 1 }}Speaker{{ else }}Speakers{{ end }}: {{ delimit $speakerNames ", " }}</p>
+      {{- end -}}
+      {{- $sponsorNames := apply (.Params.event_sponsors) "index" "." "name" -}}
+      {{- if gt (len $sponsorNames) 0 -}}
+        <p>{{ if eq (len $sponsorNames) 1 }}Sponsor{{ else }}Sponsors{{ end }}: {{ delimit $sponsorNames ", " }}</p>
+      {{- end -}}
       {{ .Summary }}
     </section>
   {{ end }}
+{{ else }}
+  <p>Good things are on the horizon! ✨ While we don't have a meeting scheduled just yet, our team is busy putting together something exciting for you. Check back soon — SV-ISSA will be posting an upcoming event before you know it!</p>
+{{ end }}
+
+<p>Our chapter meetings typically take place on the third Tuesday of each month from 6:00 PM to 8:30 PM, with dinner provided.</p>

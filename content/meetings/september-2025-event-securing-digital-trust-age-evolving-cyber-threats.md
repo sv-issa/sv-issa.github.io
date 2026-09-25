@@ -4,7 +4,7 @@ draft: false
 date: 2025-08-16 00:26:47-07:00
 layout: meetings
 params:
-  event_date: Tuesday, September 16, 2025
+  event_date: 2025-09-16
   event_time_start: 5:30pm
   event_time_end: 8:00pm
   event_rsvp_url: https://lu.ma/c4obak4w

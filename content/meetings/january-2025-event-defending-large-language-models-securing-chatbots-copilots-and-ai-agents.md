@@ -4,7 +4,7 @@ draft: false
 date: 2025-01-08 21:38:11-08:00
 layout: meetings
 params:
-  event_date: Tuesday, January 21, 2025
+  event_date: 2025-01-21
   event_time_start: 6:30am
   event_time_end: 9:00am
   event_rsvp_url: https://lu.ma/cm3as7dx

@@ -4,7 +4,7 @@ draft: false
 date: 2025-11-14 20:16:25-08:00
 layout: meetings
 params:
-  event_date: Tuesday, January 20, 2026
+  event_date: 2026-01-20
   event_time_start: 5:30pm
   event_time_end: 8:00pm
   event_rsvp_url: https://luma.com/d37df9le

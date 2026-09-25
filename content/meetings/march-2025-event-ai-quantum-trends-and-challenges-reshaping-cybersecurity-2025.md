@@ -4,7 +4,7 @@ draft: false
 date: 2025-02-19 20:13:33-08:00
 layout: meetings
 params:
-  event_date: Tuesday, March 18, 2025
+  event_date: 2025-03-18
   event_time_start: 5:30pm
   event_time_end: 8:00pm
   event_rsvp_url: https://lu.ma/6tkfmkbx

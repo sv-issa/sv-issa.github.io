@@ -1,19 +1,21 @@
 ---
-title: 'July 2025 Event: What You Don’t See Can Hurt You — SaaS Security War Stories and Lessons Learned'
+title: "July 2025 Event: What You Don't See Can Hurt You — SaaS Security War Stories and Lessons Learned"
 draft: false
 date: 2025-05-21 22:15:44-07:00
 layout: meetings
 params:
-  event_date: Tuesday, July 15, 2025
+  event_date: 2025-07-15
   event_time_start: 5:30pm
   event_time_end: 8:00pm
   event_rsvp_url: https://lu.ma/wrmc87gl
   event_location: NetApp
   event_address: 3060 Olsen Dr, San Jose, CA 95128, USA
   event_speakers:
-  - name: Jimmy Sanders, President, ISSA International
+  - name: Jimmy Sanders
+    title: President, ISSA International
     description: Jimmy Sanders brings decades of experience managing and architecting security programs across leading organizations such as Netflix, Samsung, Fiserv, SAP, and more. He serves as a board member of the Information Security Leaders Foundation (ISLF) and SPIRE ONE, and advises multiple educational institutions and non-profits on cybersecurity curriculum and workforce development. Jimmy holds CISSP, CRISC, and CISM certifications, as well as degrees in Psychology and Behavioral Science from San Jose State University.
-  - name: Kevin Hanes, CEO, Reveal Security
+  - name: Kevin Hanes
+    title: CEO, Reveal Security
     description: Kevin Hanes leads Reveal Security in its mission to defend cloud infrastructure, SaaS, and critical business applications against evolving cyber threats. Previously, as CEO of Cybrary, Kevin built a global learning platform empowering millions in the cybersecurity community. At Secureworks, he led one of the world's largest cybersecurity operations teams and developed industry-leading Incident Response and Red Team consulting practices. Earlier at Dell Technologies, Kevin earned nine patents for cloud services innovations. He holds a Bachelor’s in Computer Systems Management from St. Edward's University and an MBA from the University of Texas at Austin.
 ---
 

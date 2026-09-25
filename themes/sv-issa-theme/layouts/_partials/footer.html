@@ -1,1 +1,10 @@
+{{- $pubdate := .PublishDate.Format "2006-01-02" -}}
+{{- $lastmod := .Lastmod.Format "2006-01-02" -}}
+
+{{ if .Lastmod }}
+  <p>Page Last Updated: {{ $lastmod }}</p>
+{{ end }}
+
 <p>Copyright {{ now.Year }}. All rights reserved.</p>
+
+

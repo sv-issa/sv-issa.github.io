@@ -2,6 +2,10 @@ baseURL = 'https://sv-issa.github.io/'
 languageCode = 'en-US'
 title = 'Silicon Valley ISSA Chapter'
 theme = 'sv-issa-theme'
+enableGitInfo = true
+
+[frontmatter]
+  lastmod = ['lastmod', ':git', 'date', 'publishDate']
 
 [caches]
   [caches.images]

@@ -4,6 +4,9 @@ title = 'Silicon Valley ISSA Chapter'
 theme = 'sv-issa-theme'
 enableGitInfo = true
 
+[params]
+  description = 'Silicon Valley chapter of the Information Systems Security Association (ISSA): meetings, jobs, and training for security professionals.'
+
 [frontmatter]
   lastmod = ['lastmod', ':git', 'date', 'publishDate']
 

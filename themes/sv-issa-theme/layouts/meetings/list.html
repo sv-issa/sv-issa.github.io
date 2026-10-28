@@ -1,8 +1,8 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+  {{ partial "page-banner.html" . }}
 
-  {{ if .Content }}
-    {{ .Content }}
+  {{ with .Content }}
+    <div class="prose">{{ . }}</div>
   {{ end }}
 
   {{ $futureOnly := .Params.future_only | default false }}
@@ -26,25 +26,12 @@
   {{ if (gt (len $meetings) 0) }}
     <h2>{{ if $futureOnly }}Upcoming{{ else }}Past{{ end }} Meetings</h2>
 
-    <ul>
+    <div class="list">
     {{ range $meetings }}
-      <li>
-        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-        <p>{{ .Params.event_date | time.Format ":date_full" }}</p>
-        {{- $speakerNames := apply (.Params.event_speakers) "index" "." "name" -}}
-        {{- if gt (len $speakerNames) 0 -}}
-          <p>{{ if eq (len $speakerNames) 1 }}Speaker{{ else }}Speakers{{ end }}: {{ delimit $speakerNames ", " }}</p>
-        {{- end -}}
-        {{- $sponsorNames := apply (.Params.event_sponsors) "index" "." "name" -}}
-        {{- if gt (len $sponsorNames) 0 -}}
-          <p>{{ if eq (len $sponsorNames) 1 }}Sponsor{{ else }}Sponsors{{ end }}: {{ delimit $sponsorNames ", " }}</p>
-        {{- end -}}
-        {{ .Summary }}
-      </li>
+      {{ partial "list-item.html" (dict "page" . "level" 3) }}
     {{ end }}
-    </ul>
+    </div>
   {{ else }}
     <p>No {{ if $futureOnly }}upcoming{{ else }}past{{ end }} meetings found.</p>
   {{ end }}
-
 {{ end }}

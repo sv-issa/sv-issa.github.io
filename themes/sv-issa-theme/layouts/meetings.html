@@ -1,32 +1,66 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+  {{ partial "page-banner.html" . }}
 
-  <div>Date: {{ .Params.event_date }} {{ .Params.event_time_start }} to {{ .Params.event_time_end }}</div>
-  <div>RSVP: <a href='{{ .Params.event_rsvp_url }}?utm_source=issa_website'>{{ .Params.event_rsvp_url }}</a></div>
-  
-  {{ .Content }}
-  <h2>Sponsors</h2>
-  {{ with .Params.event_sponsors }}
-  {{ range . }}
-  <div><a href="{{ .link }}"><img {{ .link }} src="{{ .logo }}" alt="{{ .name }}"></a></div>
-  {{ end }}
-  {{ end }}
-  <h2>Speakers</h2>
-  {{ with .Params.event_speakers }}
-  {{ range . }}
-  <div><img src={{ .image }} alt={{ .name }}></div>
-  <div>{{ .name }} {{ .title }}</div>
-  <div>{{ .link }}</div>
-  <div>{{ .description }}</div>
-  {{ end }}
-  {{ end }}
-  <h2> Location </h2>
-  <div>Location: {{ .Params.event_location }} {{ .Params.event_address }}
+  <div class="detail">
+    <div class="prose">
+      {{ .Content }}
 
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+      {{ with .Params.event_speakers }}
+        <h2>Speakers</h2>
+        {{ range . }}
+          <article class="speaker">
+            {{- with .image }}
+              <img class="speaker__photo" src="{{ relURL . }}" alt="" loading="lazy">
+            {{- end }}
+            <div>
+              <h3 class="speaker__name">{{ .name }}</h3>
+              {{- with .title }}<p class="speaker__title">{{ . }}</p>{{ end }}
+              {{- with .description }}{{ . | markdownify }}{{ end }}
+            </div>
+          </article>
+        {{ end }}
+      {{ end }}
 
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <div>Published Date: <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+      {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+    </div>
 
+    <aside class="detail__aside card" aria-labelledby="event-details">
+      <h2 id="event-details">Event details</h2>
+      <dl class="facts">
+        <div>{{ partial "published.html" (dict "label" "Date" "date" .Params.event_date) }}</div>
+        {{ with .Params.event_time_start }}
+          <div><dt>Time</dt><dd>{{ . }}{{ with $.Params.event_time_end }} – {{ . }}{{ end }}</dd></div>
+        {{ end }}
+        {{ with .Params.event_location }}
+          <div><dt>Location</dt><dd>{{ . }}{{ with $.Params.event_address }}<br>{{ . }}{{ end }}</dd></div>
+        {{ end }}
+      </dl>
+
+      {{ with .Params.event_speakers }}
+        <h3>{{ if eq (len .) 1 }}Speaker{{ else }}Speakers{{ end }}</h3>
+        <ul class="plain-list">
+          {{ range . }}<li>{{ .name }}</li>{{ end }}
+        </ul>
+      {{ end }}
+
+      {{ with .Params.event_sponsors }}
+        <h3>{{ if eq (len .) 1 }}Sponsor{{ else }}Sponsors{{ end }}</h3>
+        <ul class="sponsors">
+          {{ range . }}
+            <li>
+              {{- if .logo }}
+                <a href="{{ .link }}"><img src="{{ relURL .logo }}" alt="{{ .name }}"></a>
+              {{- else }}
+                <a href="{{ .link }}">{{ .name }}</a>
+              {{- end }}
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+
+      {{ with .Params.event_rsvp_url }}
+        <p class="facts__actions"><a class="btn" href="{{ . }}?utm_source=issa_website">RSVP</a></p>
+      {{ end }}
+    </aside>
+  </div>
 {{ end }}

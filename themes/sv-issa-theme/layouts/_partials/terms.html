@@ -1,5 +1,5 @@
 {{- /*
-For a given taxonomy, renders a list of terms assigned to the page.
+For a given taxonomy, renders the terms assigned to the page as pill links.
 
 @context {page} page The current page.
 @context {string} taxonomy The taxonomy.
@@ -12,11 +12,11 @@ For a given taxonomy, renders a list of terms assigned to the page.
 
 {{- with $page.GetTerms $taxonomy }}
   {{- $label := (index . 0).Parent.LinkTitle }}
-  <div>
-    <div>{{ $label }}:</div>
-    <ul>
+  <div class="terms">
+    <p class="terms__label">{{ $label }}:</p>
+    <ul class="pills">
       {{- range . }}
-        <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+        <li><a class="pill" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
       {{- end }}
     </ul>
   </div>

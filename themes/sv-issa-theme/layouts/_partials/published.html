@@ -1,0 +1,7 @@
+{{- /*
+  Date as a <dt>/<dd> pair for use inside a .facts list.
+  Params: date (required), label (optional, default "Published").
+*/ -}}
+{{- $label := .label | default "Published" -}}
+<dt>{{ $label }}</dt>
+<dd><time datetime="{{ .date | time.Format "2006-01-02" }}">{{ .date | time.Format ":date_long" }}</time></dd>

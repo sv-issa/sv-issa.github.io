@@ -1,0 +1,15 @@
+{{- /*
+  Shared body for section, term and taxonomy list pages.
+  Context: the list page (uses .Title, .Content, .Pages).
+*/ -}}
+{{ partial "page-banner.html" . }}
+{{- with .Content }}
+  <div class="prose">{{ . }}</div>
+{{- end }}
+{{- with .Pages }}
+  <div class="list">
+    {{- range . }}
+      {{ partial "list-item.html" (dict "page" .) }}
+    {{- end }}
+  </div>
+{{- end }}

@@ -1,0 +1,30 @@
+{{- /*
+  Shared list row for meetings, jobs, trainings and section pages.
+  Params: page (required), level (heading level, default 2), class (optional extra class).
+  Date, speakers and sponsors render only when the page has them.
+*/ -}}
+{{- $p := .page -}}
+{{- $level := .level | default 2 -}}
+{{- $cls := .class -}}
+<article class="list-item{{ with $cls }} {{ . }}{{ end }}">
+  <h{{ $level }}><a href="{{ $p.RelPermalink }}">{{ $p.LinkTitle }}</a></h{{ $level }}>
+  {{- with $p.Params.event_date }}
+    <p class="list-item__meta">{{ . | time.Format ":date_full" }}</p>
+  {{- end }}
+  {{- $speakerNames := apply ($p.Params.event_speakers) "index" "." "name" -}}
+  {{- if gt (len $speakerNames) 0 }}
+    <p class="list-item__meta">{{ if eq (len $speakerNames) 1 }}Speaker{{ else }}Speakers{{ end }}: {{ delimit $speakerNames ", " }}</p>
+  {{- end }}
+  {{- $sponsorNames := apply ($p.Params.event_sponsors) "index" "." "name" -}}
+  {{- if gt (len $sponsorNames) 0 }}
+    <p class="list-item__meta">{{ if eq (len $sponsorNames) 1 }}Sponsor{{ else }}Sponsors{{ end }}: {{ delimit $sponsorNames ", " }}</p>
+  {{- end }}
+  {{- with $p.Summary }}
+    {{- if $cls }}
+      {{/* Cards get a short plain-text teaser; lists keep full summaries. */}}
+      <p class="list-item__summary">{{ . | replaceRE "<[^>]+>" " " | htmlUnescape | replaceRE `\s+` " " | truncate 140 }}</p>
+    {{- else }}
+      <div class="list-item__summary">{{ . }}</div>
+    {{- end }}
+  {{- end }}
+</article>

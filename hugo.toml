@@ -1,11 +1,41 @@
 baseURL = 'https://sv-issa.github.io/'
-languageCode = 'en-US'
+locale = 'en-US'
 title = 'Silicon Valley ISSA Chapter'
 theme = 'sv-issa-theme'
 enableGitInfo = true
 
 [params]
   description = 'Silicon Valley chapter of the Information Systems Security Association (ISSA): meetings, jobs, and training for security professionals.'
+
+[[menus.footer]]
+  name = 'Upcoming Meetings'
+  pageRef = '/meetings/upcoming'
+  weight = 10
+
+[[menus.footer]]
+  name = 'Past Meetings'
+  pageRef = '/meetings/past'
+  weight = 20
+
+[[menus.footer]]
+  name = 'Jobs'
+  pageRef = '/jobs'
+  weight = 30
+
+[[menus.footer]]
+  name = 'Board'
+  pageRef = '/about/sv-issa-board'
+  weight = 40
+
+[[menus.footer]]
+  name = 'ISSA International'
+  pageRef = '/about/issa-international'
+  weight = 50
+
+[[menus.footer]]
+  name = 'Join SV-ISSA'
+  url = 'https://www.issa.org/general/register_member_type.asp?'
+  weight = 60
 
 [frontmatter]
   lastmod = ['lastmod', ':git', 'date', 'publishDate']
@@ -101,4 +131,4 @@ enableGitInfo = true
 [module]
   [module.hugoVersion]
     extended = false
-    min = '0.146.0'
+    min = '0.158.0'

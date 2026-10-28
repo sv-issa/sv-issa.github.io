@@ -1,10 +1,13 @@
-{{- $pubdate := .PublishDate.Format "2006-01-02" -}}
-{{- $lastmod := .Lastmod.Format "2006-01-02" -}}
-
-{{ if .Lastmod }}
-  <p>Page Last Updated: {{ $lastmod }}</p>
-{{ end }}
-
-<p>Copyright {{ now.Year }}. All rights reserved.</p>
-
-
+<div class="container footer-inner">
+  <div class="footer-brand">
+    <p class="footer-name">{{ site.Title }}</p>
+    <p class="footer-tag">Information Systems Security Association</p>
+  </div>
+  {{ partial "menu.html" (dict "menuID" "footer" "page" . "class" "footer-nav" "label" "Footer") }}
+  <div class="footer-meta">
+    {{- with .Lastmod }}
+      <p>Page last updated: {{ .Format "2006-01-02" }}</p>
+    {{- end }}
+    <p>Copyright {{ now.Year }}. All rights reserved.</p>
+  </div>
+</div>

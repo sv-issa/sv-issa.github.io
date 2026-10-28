@@ -1,16 +1,15 @@
+<h2>Current Job Postings</h2>
 
-  <section>
-    <h2>Current Job Posting</h2>
+{{- $jobs := where site.RegularPages "Type" "jobs" }}
+{{- if $jobs }}
+  <div class="card-grid">
+  {{- range $jobs }}
+    {{ partial "list-item.html" (dict "page" . "level" 3 "class" "card") }}
+  {{- end }}
+  </div>
+{{- else }}
+  <p>There are no current job postings.</p>
+{{- end }}
 
-    <p>Job postings expire after 90 days, there are no current job
-    postings. If you would like to have your job posting listed here
-    for free for 90 days, please send the posting in Word or HTML
-    format to webmaster@sv-issa.org</p>
-
-  <ul>
-  {{ $meetings := where site.RegularPages "Type" "jobs" }}
-  {{ range $meetings }}
-      <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-  {{ end }}
-  </ul>
-  </section>
+<p>Job postings expire after 90 days. To have your posting listed here
+for free for 90 days, please send it in Word or HTML format to webmaster@sv-issa.org.</p>

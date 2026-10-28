@@ -1,12 +1,20 @@
 {{ define "main" }}
-  {{ .Content }}
-  <hr/>
-  {{ partial "home-meetings.html" }}
-  <hr/>
-  {{ partial "home-jobs.html" }}
-  <hr/>
-  {{ partial "home-contact.html" }}
-  <hr/>
-  {{ partial "home-trainings.html" }}
+  {{ partial "home-meetings.html" . }}
 
+  <section class="section">
+    {{ .Content }}
+    <p>Our chapter meetings typically take place on the third Tuesday of each month from 6:00 PM to 8:30 PM, with dinner provided.</p>
+  </section>
+
+  <section class="section section--alt">
+    {{ partial "home-jobs.html" . }}
+  </section>
+
+  <section class="section">
+    {{ partial "home-trainings.html" . }}
+  </section>
+
+  <section class="section section--alt">
+    {{ partial "home-contact.html" . }}
+  </section>
 {{ end }}

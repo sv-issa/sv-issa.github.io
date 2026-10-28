@@ -1,29 +1,23 @@
-<h2>Upcoming Meeting</h2>
+{{- /* Hero: the next upcoming meeting. Renders nothing when none is scheduled. */ -}}
+{{- $today := now | time.Format "2006-01-02" -}}
+{{- $meetings := where site.RegularPages "Type" "meetings" -}}
+{{- $meetings = where $meetings "Params.event_date" ">" $today -}}
+{{- $meetings = sort $meetings "Params.event_date" "asc" -}}
 
-{{ $today := now | time.Format "2006-01-02" }}
-{{ $meetings := where site.RegularPages "Type" "meetings" }}
-{{ $meetings = where $meetings "Params.event_date" ">" $today }}
-{{ $meetings = sort $meetings "Params.event_date" "asc" }}
-{{ $nextMeeting := first 1 $meetings }}
-
-{{ if (gt (len $nextMeeting) 0) }}
-  {{ range $nextMeeting }}
-    <section>
-      <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
-      <p>{{ .Params.event_date | time.Format ":date_full" }}</p>
-      {{- $speakerNames := apply (.Params.event_speakers) "index" "." "name" -}}
-      {{- if gt (len $speakerNames) 0 -}}
-        <p>{{ if eq (len $speakerNames) 1 }}Speaker{{ else }}Speakers{{ end }}: {{ delimit $speakerNames ", " }}</p>
-      {{- end -}}
-      {{- $sponsorNames := apply (.Params.event_sponsors) "index" "." "name" -}}
-      {{- if gt (len $sponsorNames) 0 -}}
-        <p>{{ if eq (len $sponsorNames) 1 }}Sponsor{{ else }}Sponsors{{ end }}: {{ delimit $sponsorNames ", " }}</p>
-      {{- end -}}
-      {{ .Summary }}
-    </section>
-  {{ end }}
-{{ else }}
-  <p>Good things are on the horizon! ✨ While we don't have a meeting scheduled just yet, our team is busy putting together something exciting for you. Check back soon — SV-ISSA will be posting an upcoming event before you know it!</p>
-{{ end }}
-
-<p>Our chapter meetings typically take place on the third Tuesday of each month from 6:00 PM to 8:30 PM, with dinner provided.</p>
+{{- range first 1 $meetings }}
+  {{- $end := .Params.event_time_end }}
+  <section class="hero" aria-labelledby="next-meeting">
+    <div class="hero__inner">
+      <p class="hero__eyebrow">Next meeting</p>
+      <h1 class="hero__title" id="next-meeting"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h1>
+      <p class="hero__meta">
+        {{- .Params.event_date | time.Format ":date_full" }}
+        {{- with .Params.event_time_start }} · {{ . }}{{ with $end }} – {{ . }}{{ end }}{{ end }}
+        {{- with .Params.event_location }} · {{ . }}{{ end }}
+      </p>
+      <a class="btn" href="{{ .Params.event_rsvp_url | default .RelPermalink }}">Register</a>
+    </div>
+  </section>
+{{- else }}
+  <h1 class="visually-hidden">{{ site.Title }}</h1>
+{{- end }}

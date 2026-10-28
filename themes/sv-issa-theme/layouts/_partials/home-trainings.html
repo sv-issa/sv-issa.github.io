@@ -1,8 +1,10 @@
-  <h2>Trainings</h2>
-  {{ $meetings := where site.RegularPages "Type" "trainings" }}
-  {{ range $meetings }}
-    <section>
-      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-      {{ .Summary }}
-    </section>
-  {{ end }}
+<h2>Trainings</h2>
+
+{{- $trainings := where site.RegularPages "Type" "trainings" }}
+{{- with $trainings }}
+  <div class="card-grid">
+  {{- range . }}
+    {{ partial "list-item.html" (dict "page" . "level" 3 "class" "card") }}
+  {{- end }}
+  </div>
+{{- end }}

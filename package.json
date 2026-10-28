@@ -1,0 +1,24 @@
+{
+  "name": "sv-issa.github.io",
+  "version": "1.0.0",
+  "description": "![ISSA Logo](https://github.com/sv-issa/sv-issa.github.io/raw/main/static/images/logo.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sv-issa/sv-issa.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sv-issa/sv-issa.github.io/issues"
+  },
+  "homepage": "https://github.com/sv-issa/sv-issa.github.io#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5"
+  }
+}

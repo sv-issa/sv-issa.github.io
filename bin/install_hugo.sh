@@ -18,6 +18,25 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}Installing Hugo ${HUGO_VERSION}...${NC}"
 
+# Skip if already installed with matching version
+if hugo version &> /dev/null 2>&1; then
+  INSTALLED=$(hugo version | grep -oP '\d+\.\d+\.\d+')
+  if [ "$INSTALLED" = "$HUGO_VERSION" ]; then
+    echo -e "${GREEN}✓ Hugo ${HUGO_VERSION} is already installed.${NC}"
+    exit 0
+  fi
+fi
+
+# Ensure download dependencies are available
+if ! command -v curl &> /dev/null; then
+  echo "Installing curl..."
+  if command -v sudo &> /dev/null; then
+    sudo apt-get update && sudo apt-get install -y curl
+  else
+    apt-get update && apt-get install -y curl
+  fi
+fi
+
 # Create bin directory if it doesn't exist
 if [ ! -d "${INSTALL_DIR}" ]; then
     echo "Creating ${INSTALL_DIR} directory..."
@@ -26,14 +45,7 @@ fi
 
 # Download the .deb package
 echo "Downloading Hugo package from ${DOWNLOAD_URL}..."
-if command -v curl &> /dev/null; then
-    curl -L -o "${DEB_FILE}" "${DOWNLOAD_URL}"
-elif command -v wget &> /dev/null; then
-    wget -O "${DEB_FILE}" "${DOWNLOAD_URL}"
-else
-    echo "Error: Neither curl nor wget is available. Please install one of them."
-    exit 1
-fi
+curl -L -o "${DEB_FILE}" "${DOWNLOAD_URL}"
 
 # Check if download was successful
 if [ ! -f "${DEB_FILE}" ]; then
@@ -41,13 +53,22 @@ if [ ! -f "${DEB_FILE}" ]; then
     exit 1
 fi
 
+# Helper: run a command, using sudo if available
+run_with_sudo() {
+  if command -v sudo &> /dev/null; then
+    sudo "$@"
+  else
+    "$@"
+  fi
+}
+
 # Install the .deb package
 echo "Installing Hugo package..."
-sudo dpkg -i "${DEB_FILE}"
+run_with_sudo dpkg -i "${DEB_FILE}"
 
 # Fix missing dependencies if any (using apt-get)
 echo "Fixing dependencies..."
-sudo apt-get install -f -y
+run_with_sudo apt-get install -f -y
 
 # Move the .deb file to trash or remove if needed
 echo "Cleaning up..."

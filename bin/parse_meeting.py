@@ -6,6 +6,15 @@ from urllib.parse import unquote
 from bs4 import BeautifulSoup, NavigableString, Tag
 from markdownify import markdownify as md
 
+# Import security utilities
+sys.path.insert(0, os.path.dirname(__file__))
+from .security_utils import (
+    safe_join,
+    validate_file_size,
+    read_file_safely,
+    sanitize_html_content
+)
+
 ZWSP = '\u200b'
 
 STOPWORDS = {
@@ -510,9 +519,19 @@ def extract_event_time_end(body_markdown, start_suffix):
 
 
 def parse_meeting(html_path):
-    with open(html_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-    soup = BeautifulSoup(content, 'lxml')
+    try:
+        # Use secure file reading
+        content = read_file_safely(html_path)
+
+        # Use BeautifulSoup with safe HTML sanitization
+        soup = BeautifulSoup(content, 'lxml')
+
+        # Sanitize HTML content to remove potentially dangerous elements
+        content = sanitize_html_content(content)
+        soup = BeautifulSoup(content, 'lxml')
+    except (ValueError, PermissionError, OSError) as e:
+        print(f'ERROR: Failed to read or sanitize file {html_path}: {e}')
+        return None
     article = soup.find('article')
     if article is None:
         return None
@@ -584,6 +603,24 @@ def parse_meeting(html_path):
 
 if __name__ == '__main__':
     import json
+
+    if len(sys.argv) < 2:
+        print('Usage: python parse_meeting.py <html_file_path>')
+        sys.exit(1)
+
     path = sys.argv[1]
-    r = parse_meeting(path)
-    print(json.dumps(r, indent=2, ensure_ascii=False))
+
+    try:
+        r = parse_meeting(path)
+        if r:
+            print(json.dumps(r, indent=2, ensure_ascii=False))
+        else:
+            sys.exit(1)
+    except (ValueError, PermissionError, OSError) as e:
+        print(f'ERROR: {e}')
+        sys.exit(1)
+    except Exception as e:
+        print(f'UNEXPECTED ERROR: {e}')
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)

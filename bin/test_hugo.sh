@@ -45,7 +45,8 @@ fi
 
 # Test 4: Check if hugo can be run in the project directory
 echo -e "\nTest 4: Testing Hugo in project directory..."
-cd /home/user/opt/sv-issa.github.io
+PROJ_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$PROJ_DIR"
 if hugo version &> /dev/null; then
     echo -e "${GREEN}✓ Hugo can be run in project directory${NC}"
 else

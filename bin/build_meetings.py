@@ -16,6 +16,14 @@ from parse_meeting import (  # noqa: E402
     parse_meeting, local_image_basename, extract_event_time_end,
     title_case_from_slug,
 )
+from .security_utils import (
+    safe_join,
+    is_within_directory,
+    validate_file_size,
+    read_file_safely,
+    sanitize_html_content,
+    is_allowed_file_extension
+)
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HTML_DIR = os.path.join(REPO_ROOT, 'old-website', 'meetings')
@@ -39,17 +47,34 @@ def copy_image(src_url):
     if not basename:
         return None
     basename = unquote(basename)
-    src_path = os.path.join(OLD_FILES_DIR, basename)
-    if not os.path.isfile(src_path):
+
+    try:
+        # Validate source path is within OLD_FILES_DIR
+        src_path = safe_join(OLD_FILES_DIR, basename)
+        if not is_within_directory(src_path, OLD_FILES_DIR):
+            print(f'WARNING: Path outside allowed directory: {src_path}')
+            return None
+
+        if not os.path.isfile(src_path):
+            return None
+
+        # Validate file size
+        validate_file_size(src_path)
+
+        # spaces in a URL path require escaping everywhere they're used, so
+        # normalize them out of the copied filename instead
+        safe_basename = basename.replace(' ', '-')
+        dest_path = safe_join(STATIC_IMAGES_DIR, safe_basename)
+
+        os.makedirs(STATIC_IMAGES_DIR, exist_ok=True)
+        if not os.path.exists(dest_path):
+            shutil.copy2(src_path, dest_path)
+
+        return f'/images/{safe_basename}'
+
+    except (ValueError, OSError) as e:
+        print(f'WARNING: Error copying image {src_url}: {e}')
         return None
-    # spaces in a URL path require escaping everywhere they're used, so
-    # normalize them out of the copied filename instead
-    safe_basename = basename.replace(' ', '-')
-    os.makedirs(STATIC_IMAGES_DIR, exist_ok=True)
-    dest_path = os.path.join(STATIC_IMAGES_DIR, safe_basename)
-    if not os.path.exists(dest_path):
-        shutil.copy2(src_path, dest_path)
-    return f'/images/{safe_basename}'
 
 
 def yaml_str(value):
@@ -149,37 +174,63 @@ def dump_frontmatter(frontmatter):
 
 
 def convert_file(html_path):
-    data = parse_meeting(html_path)
+    try:
+        data = parse_meeting(html_path)
+    except (ValueError, OSError) as e:
+        print(f'ERROR processing {html_path}: {e}')
+        return False
+
     if not data or not data.get('title'):
         print(f'SKIP (no title): {html_path}')
         return False
 
     html_filename = os.path.basename(html_path)
     md_filename = html_filename.replace('.html', '.md')
-    md_path = os.path.join(CONTENT_DIR, md_filename)
+    md_path = safe_join(CONTENT_DIR, md_filename)
 
-    frontmatter = build_frontmatter(data, html_filename)
-    fm_text = dump_frontmatter(frontmatter)
+    try:
+        frontmatter = build_frontmatter(data, html_filename)
+        fm_text = dump_frontmatter(frontmatter)
 
-    body = data['body_markdown'].strip()
-    content = f'---\n{fm_text}---\n\n{body}\n'
+        body = data['body_markdown'].strip()
+        content = f'---\n{fm_text}---\n\n{body}\n'
 
-    with open(md_path, 'w', encoding='utf-8') as f:
-        f.write(content)
-    print(f'Wrote: {md_path}')
-    return True
+        with open(md_path, 'w', encoding='utf-8') as f:
+            f.write(content)
+        print(f'Wrote: {md_path}')
+        return True
+
+    except (FileNotFoundError, PermissionError, ValueError, OSError) as e:
+        print(f'ERROR writing {md_path}: {e}')
+        return False
 
 
 def main():
-    os.makedirs(CONTENT_DIR, exist_ok=True)
+    try:
+        os.makedirs(CONTENT_DIR, exist_ok=True)
+    except (OSError, PermissionError) as e:
+        print(f'ERROR: Cannot create content directory {CONTENT_DIR}: {e}')
+        return
+
     html_files = sorted(glob.glob(os.path.join(HTML_DIR, '*.html')))
     converted = 0
     for html_path in html_files:
-        base = os.path.basename(html_path)
-        if base in SKIP_FILES or 'page=' in base:
+        try:
+            # Validate path is within HTML_DIR
+            html_path = safe_join(HTML_DIR, html_path)
+            if not is_within_directory(html_path, HTML_DIR):
+                print(f'WARNING: Path outside allowed directory: {html_path}')
+                continue
+
+            base = os.path.basename(html_path)
+            if base in SKIP_FILES or 'page=' in base:
+                continue
+            if convert_file(html_path):
+                converted += 1
+        except (ValueError, OSError) as e:
+            print(f'WARNING: Error processing {html_path}: {e}')
             continue
-        if convert_file(html_path):
-            converted += 1
+
     print(f'\nConverted {converted} files.')
 
 

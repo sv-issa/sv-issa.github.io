@@ -1,17 +1,23 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+  {{ partial "page-banner.html" . }}
 
-  <div>Job Title: {{ .Params.job_title }}</div>
-  <div>Job Company: {{ .Params.job_company }}</div>
-  <div>Job Location: {{ .Params.job_location }}</div>
-  <div>Job Posting: <a href='{{ .Params.job_url }}'>{{ .Params.job_url }}</a></div>
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <div>Published Date: <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+  <div class="detail">
+    <div class="prose">
+      {{ .Content }}
+      {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+    </div>
 
-
-  
-  {{ .Content }}
-
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+    <aside class="detail__aside card" aria-labelledby="job-details">
+      <h2 id="job-details">Job details</h2>
+      <dl class="facts">
+        {{ with .Params.job_title }}<div><dt>Role</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.job_company }}<div><dt>Company</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.job_location }}<div><dt>Location</dt><dd>{{ . }}</dd></div>{{ end }}
+        <div>{{ partial "published.html" (dict "label" "Posted" "date" .Date) }}</div>
+      </dl>
+      {{ with .Params.job_url }}
+        <p class="facts__actions"><a class="btn" href="{{ . }}">View posting</a></p>
+      {{ end }}
+    </aside>
+  </div>
 {{ end }}

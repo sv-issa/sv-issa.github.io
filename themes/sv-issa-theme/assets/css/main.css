@@ -14,6 +14,18 @@
   --line: #e3e8ee;
   --bg: #fff;
   --bg-alt: #f5f8fb;
+  --white: #fff;
+
+  /* Text and rules on dark bands (hero, footer) */
+  --on-blue-soft: #d6e4f2;
+  --on-blue-muted: #a9c4de;
+  --on-blue-line: rgb(255 255 255 / 0.4);
+  --on-blue-rule: rgb(255 255 255 / 0.15);
+
+  /* Focus, elevation, motion */
+  --focus: var(--blue);
+  --shadow: 0 16px 40px -16px rgb(11 79 138 / 0.3);
+  --duration: 150ms;
 
   /* Shape */
   --radius: 8px;
@@ -83,13 +95,14 @@ body {
   text-rendering: optimizeLegibility;
   min-height: 100vh;
   margin: 0;
-  padding: 0 var(--space-3);
-  max-width: var(--max);
-  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
   display: block;
+  flex: 1 0 auto;
+  width: 100%;
   padding-block: var(--space-4);
 }
 
@@ -182,7 +195,7 @@ a {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
-  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  transition: color var(--duration) ease, text-decoration-color var(--duration) ease;
 }
 
 a:hover {
@@ -200,7 +213,7 @@ a:visited {
 }
 
 :focus-visible {
-  outline: 3px solid var(--blue);
+  outline: 3px solid var(--focus);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -217,15 +230,725 @@ a:visited {
   }
 }
 
-/* --- Header/footer baseline (layout shell refines in Phase 2) ----------- */
-header {
+/* --- Layout shell ------------------------------------------------------- */
+/* Single width rule: every header, main and footer block uses .container. */
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+/* Skip link: hidden until focused */
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 100;
+  padding: var(--space-2) var(--space-3);
+  background: var(--blue);
+  color: var(--white);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--duration) ease;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
   border-bottom: 1px solid var(--line);
 }
 
-footer {
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-3);
+  min-height: 4rem;
+}
+
+.wordmark {
+  margin: 0;
+  line-height: 0;
+}
+
+.wordmark a {
+  display: inline-block;
+}
+
+.wordmark img {
+  display: block;
+  height: 44px;
+  width: auto;
+}
+
+/* Mobile toggle (hidden on desktop) */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: 0 var(--space-3);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.nav-toggle-bars,
+.nav-toggle-bars::before,
+.nav-toggle-bars::after {
+  display: block;
+  width: 1.1rem;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--duration) ease, opacity var(--duration) ease;
+}
+
+.nav-toggle-bars {
+  position: relative;
+}
+
+.nav-toggle-bars::before,
+.nav-toggle-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle-bars::before { top: -6px; }
+.nav-toggle-bars::after { top: 6px; }
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars { background: transparent; }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars::before { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars::after { transform: translateY(-6px) rotate(-45deg); }
+
+/* Nav: mobile first (stacked panel). Without JS it simply stays visible. */
+.site-nav {
+  flex: 1 0 100%;
+  padding-block: var(--space-2) var(--space-3);
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav > ul > li {
   border-top: 1px solid var(--line);
+}
+
+.site-nav a,
+.site-nav span {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 var(--space-2);
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.site-nav span {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.site-nav a:hover {
+  background: var(--bg-alt);
+  color: var(--blue);
+}
+
+.site-nav ul ul a {
+  font-size: var(--text-sm);
+  padding-left: var(--space-4);
+}
+
+/* Current page and its ancestors, driven by the aria-current attribute. */
+.site-nav [aria-current="page"] {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.site-nav [aria-current="true"] {
+  color: var(--blue);
+}
+
+/* JS collapses the mobile nav behind the toggle */
+.js .site-nav {
+  display: none;
+}
+
+.js .site-header.is-open .site-nav {
+  display: block;
+}
+
+/* Desktop: horizontal bar with hover/focus dropdowns */
+@media (min-width: 800px) {
+  .header-inner {
+    flex-wrap: nowrap;
+    min-height: 4.5rem;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .js .site-nav,
+  .site-nav {
+    display: block;
+    flex: 0 1 auto;
+    padding: 0;
+  }
+
+  .site-nav > ul {
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-1);
+  }
+
+  .site-nav > ul > li {
+    position: relative;
+    border: 0;
+  }
+
+  .site-nav > ul > li > a,
+  .site-nav > ul > li > span {
+    min-height: 2.75rem;
+    font-size: var(--text-sm);
+  }
+
+  .site-nav > ul > li > span::after {
+    content: "";
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-left: var(--space-2);
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+  }
+
+  .site-nav li > ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 60;
+    min-width: 16rem;
+    padding: var(--space-1);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .site-nav ul ul a {
+    padding-left: var(--space-2);
+    white-space: nowrap;
+  }
+
+  .site-nav li:hover > ul,
+  .site-nav li:focus-within > ul {
+    display: block;
+  }
+}
+
+/* Footer */
+.site-footer {
+  --focus: var(--white);
+  margin-top: var(--space-5);
+  padding-block: var(--space-4) var(--space-3);
+  background: var(--blue-dark);
+  color: var(--on-blue-soft);
+  font-size: var(--text-sm);
+}
+
+.footer-inner {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.footer-name {
+  margin: 0;
+  color: var(--white);
+  font-size: var(--text-h4);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.footer-tag {
+  margin: var(--space-1) 0 0;
+  max-width: none;
+  color: var(--on-blue-muted);
+}
+
+.site-footer a {
+  color: var(--white);
+  text-decoration: underline;
+  text-decoration-color: var(--on-blue-line);
+}
+
+.site-footer a:hover {
+  text-decoration-color: var(--white);
+}
+
+.site-footer a:visited {
+  color: var(--white);
+}
+
+.footer-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--on-blue-rule);
+  color: var(--on-blue-muted);
+}
+
+.footer-meta p {
+  margin: 0;
+  max-width: none;
+}
+
+@media (min-width: 800px) {
+  .footer-inner {
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+  }
+
+  .footer-meta {
+    grid-column: 1 / -1;
+  }
+}
+
+/* --- Components (Phase 3) ----------------------------------------------- */
+
+/* Section wrapper. .section--alt paints a full-bleed band behind the
+   container width without changing layout (box-shadow + clip-path). */
+.section {
+  padding-block: var(--space-4);
+}
+
+/* Full-bleed bands: .section--alt and .hero share the same trick. */
+.section--alt,
+.hero,
+.page-banner {
+  position: relative;
+  background: var(--band);
+  box-shadow: 0 0 0 100vmax var(--band);
+  clip-path: inset(0 -100vmax);
+}
+
+.section--alt,
+.page-banner { --band: var(--bg-alt); }
+
+/* Title band for content and list pages. Pulls up under the header like .hero. */
+.page-banner {
+  margin-top: calc(var(--space-4) * -1);
+  padding-block: var(--space-4) var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.page-banner h1 {
+  margin: 0;
+}
+
+/* Hero: next meeting. Pulls up into main's top padding so it sits under the header. */
+.hero {
+  --band: var(--blue);
+  --focus: var(--white);
+  margin-top: calc(var(--space-4) * -1);
+  padding-block: var(--space-5) var(--space-4);
+  color: var(--white);
+}
+
+.hero__inner {
+  max-width: 44rem;
+}
+
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+  color: var(--on-blue-muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero__eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 2px;
+  background: currentColor;
+}
+
+.hero__title {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-h2);
+  color: var(--white);
+}
+
+.hero a {
+  color: var(--white);
+}
+
+.hero__title a {
+  text-decoration: none;
+}
+
+.hero__title a:hover {
+  text-decoration: underline;
+}
+
+.hero__meta {
+  margin-bottom: var(--space-4);
+  color: var(--on-blue-soft);
+  font-size: var(--text-h4);
+}
+
+/* Light button on the blue band (scoped override, not a new variant). */
+.hero .btn {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--blue);
+}
+
+.hero .btn:hover {
+  background: var(--bg-alt);
+  border-color: var(--bg-alt);
+  color: var(--blue-dark);
+}
+
+/* Card grid for jobs and trainings. Items are .list-item.card. */
+.card-grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card-grid > .card {
+  border-top: 1px solid var(--line);
+}
+
+/* Button: the single style used site-wide. */
+.btn {
+  display: inline-block;
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--blue);
+  border-radius: var(--radius);
+  background: var(--blue);
+  color: var(--white);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--duration) ease, color var(--duration) ease;
+}
+
+.btn:hover {
+  background: var(--blue-dark);
+  border-color: var(--blue-dark);
+  color: var(--white);
+}
+
+/* Card: bordered surface for asides and grouped content. */
+.card {
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+/* List: stacked rows separated by a hairline. */
+.list {
+  display: grid;
+  margin: 0;
+}
+
+.list-item {
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+.list-item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.list-item h2,
+.list-item h3,
+.list-item h4 {
+  margin-bottom: var(--space-1);
+}
+
+.list-item__meta {
+  margin: 0 0 var(--space-1);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.list-item__summary > :last-child {
+  margin-bottom: 0;
+}
+
+/* Prose column: body copy from Markdown, capped at 70ch for readability. */
+.prose {
+  max-width: 70ch;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose h2,
+.prose h3 {
+  margin-top: var(--space-4);
+}
+
+.prose li + li {
+  margin-top: var(--space-1);
+}
+
+.prose img {
+  border-radius: var(--radius);
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.prose th,
+.prose td {
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  font-weight: 700;
+  background: var(--bg-alt);
+}
+
+/* Detail page: body column plus a .card aside. Aside sits first on mobile. */
+.detail {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.detail__aside {
+  order: -1;
+  align-self: start;
+}
+
+.detail__aside :is(h2, h3) {
+  margin-top: var(--space-3);
+  font-size: var(--text-h4);
+}
+
+.detail__aside :is(h2, h3):first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 800px) {
+  .detail {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    gap: var(--space-5);
+  }
+
+  .detail__aside {
+    order: 0;
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+/* Facts: label/value pairs inside the aside card. */
+.facts {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.facts dt {
   color: var(--muted);
   font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.facts__actions {
   margin-top: var(--space-4);
-  padding-block: var(--space-3);
+}
+
+.facts__actions .btn {
+  display: block;
+  text-align: center;
+}
+
+/* Sponsor logos in a wrapping row. */
+.sponsors {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sponsors img {
+  width: auto;
+  height: auto;
+  max-width: 8rem;
+  max-height: 2.5rem; /* scale proportionally, never distort */
+}
+
+.plain-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Speaker bio: optional photo beside the name and description. */
+.speaker {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+}
+
+.speaker__photo {
+  flex: 0 0 5rem;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.speaker__name {
+  font-size: var(--text-h4);
+  margin-bottom: 0;
+}
+
+.speaker__title {
+  margin: 0 0 var(--space-1);
+  color: var(--muted);
+}
+
+/* Terms: small pill links (tags, categories). */
+.terms {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.terms__label {
+  margin: 0;
+  font-weight: 600;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-alt);
+  color: var(--blue);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  transition: background-color var(--duration) ease, border-color var(--duration) ease;
+}
+
+.pill:hover {
+  background: var(--bg);
+  border-color: var(--blue);
+  color: var(--blue-dark);
+}
+
+/* --- Utilities ---------------------------------------------------------- */
+/* Hidden for sighted users, still read by screen readers. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* --- Print -------------------------------------------------------------- */
+/* Drop navigation chrome and colored bands; keep the content and links. */
+@media print {
+  .skip-link,
+  .site-header,
+  .site-footer,
+  .btn {
+    display: none !important; /* beats .facts__actions .btn */
+  }
+
+  .section--alt,
+  .hero,
+  .page-banner {
+    background: none;
+    box-shadow: none;
+    clip-path: none;
+  }
+
+  .hero,
+  .hero * {
+    color: var(--ink) !important;
+  }
+
+  .detail__aside {
+    position: static;
+  }
+
+  a {
+    text-decoration: underline;
+  }
 }

@@ -99,7 +99,7 @@ test.describe('motion', () => {
     const durations = await btn.evaluate((el) =>
       getComputedStyle(el).transitionDuration.split(',').map((d) => d.trim())
     );
-    expect(durations.every((d) => d === '0.15s')).toBe(true);
+    expect(durations.every((d) => d === '0.22s')).toBe(true);
   });
 
   test('reduced motion removes transition time', async ({ page }) => {

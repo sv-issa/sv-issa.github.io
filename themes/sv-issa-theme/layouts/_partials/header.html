@@ -2,9 +2,11 @@
   {{- $logo := `<img src="%s" width="373" height="100" alt="%s">` -}}
   {{- $logo = printf $logo (relURL "images/svissa-logo.png") (site.Title) -}}
   <p class="wordmark"><a href="{{ site.Home.RelPermalink }}">{{ $logo | safeHTML }}</a></p>
-  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+
+  <label class="nav-toggle" for="nav-toggle" aria-label="Toggle navigation">
     <span class="nav-toggle-bars" aria-hidden="true"></span>
     <span class="nav-toggle-text">Menu</span>
-  </button>
+  </label>
+
   {{ partial "menu.html" (dict "menuID" "main" "page" . "id" "site-nav" "class" "site-nav" "label" "Main") }}
 </div>

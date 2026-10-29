@@ -346,10 +346,40 @@ a:visited {
 .nav-toggle[aria-expanded="true"] .nav-toggle-bars::before { transform: translateY(6px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bars::after { transform: translateY(-6px) rotate(-45deg); }
 
-/* Nav: mobile first (stacked panel). Without JS it simply stays visible. */
+/* Nav: mobile first — hidden by default, revealed by CSS checkbox. */
 .site-nav {
+  display: none;
   flex: 1 0 100%;
   padding-block: var(--space-2) var(--space-3);
+}
+
+/* Hidden checkbox — the toggle mechanism. Invisible but keyboard-focusable via label. */
+.nav-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Show nav when checkbox is checked */
+.nav-checkbox:checked ~ .container .site-nav {
+  display: block;
+}
+
+/* Animate hamburger bars to X when open */
+.nav-checkbox:checked ~ .container .nav-toggle-bars {
+  background: transparent;
+}
+
+.nav-checkbox:checked ~ .container .nav-toggle-bars::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-checkbox:checked ~ .container .nav-toggle-bars::after {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 .site-nav ul {
@@ -398,15 +428,6 @@ a:visited {
   color: var(--blue);
 }
 
-/* JS collapses the mobile nav behind the toggle */
-.js .site-nav {
-  display: none;
-}
-
-.js .site-header.is-open .site-nav {
-  display: block;
-}
-
 /* Desktop: horizontal bar with hover/focus dropdowns */
 @media (min-width: 800px) {
   .header-inner {
@@ -418,7 +439,6 @@ a:visited {
     display: none;
   }
 
-  .js .site-nav,
   .site-nav {
     display: block;
     flex: 0 1 auto;

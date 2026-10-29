@@ -1,0 +1,107 @@
+# Board member roster for Silicon Valley ISSA.
+# photo: URL or path to headshot. Replace with real photos when available.
+# vacant: true hides the bio block but still renders the role + email.
+
+members:
+  - name: Mike Skurko
+    role: President
+    email: president@sv-issa.org
+    photo: "/images/avatar-placeholder.png"
+    bio: |
+      Mike Skurko is the President of the Silicon Valley ISSA. He is the Co-Founder and
+      Principal Consultant at [PRE](https://www.preglobalsolutions.com/) working exclusively
+      with cybersecurity startups as a vCRO and Advisor providing security strategies, GTM,
+      and revenue generation. He's worked for or advised over 23 startups and seen two IPOs
+      and four acquisitions. Beyond his day job(s) in cybersecurity he holds three non-cyber
+      security certifications: Pyrotechnic Operator, Avy-1 and is a PADI Rescue Diver. He
+      was raised in Tokyo, speaks Japanese and is well versed in the culture and cuisine of Japan.
+
+  - name: Vice President
+    role: Vice President
+    email: vicepresident@sv-issa.org
+    vacant: true
+
+  - name: Tyler Pinckard
+    role: Treasurer
+    email: treasurer@sv-issa.org
+    photo: "/images/avatar-placeholder.png"
+    bio: |
+      Tyler is responsible for managing the chapter books, payment arrangements to vendors,
+      and donation receivership. He is Senior Engineering Manager — DevOps & Security at
+      SupportLogic, leading DevOps, Security, Infrastructure, and IT, and serving as Data
+      Privacy Officer. A U.S. Army Officer veteran, Tyler joined SV-ISSA in 2019 and used
+      the chapter's study program to earn his CISSP.
+
+  - name: Victor Chang
+    role: Volunteer Director
+    email: volunteer@sv-issa.org
+    photo: "/images/avatar-placeholder.png"
+    bio: |
+      Victor has over 20 years of experience in SaaS, payments, cybersecurity, and autonomous
+      driving technology. He has held leadership positions at Amdocs and Meta (Facebook),
+      including the CISO role at Vubiquity. He is currently Head of IT, Compliance, and
+      Enterprise Security at Xage Security, focused on IoT and critical infrastructure. Victor
+      also volunteers at the nonprofit Pocket Security as Director of Security Assessments.
+
+  - name: Elissa Silveira
+    role: Recording Director
+    email: recordingdirector@sv-issa.org
+    photo: "/images/avatar-placeholder.png"
+    bio: |
+      Elissa ensures accurate documentation and preservation of official records, board
+      meetings, and membership events. A former Naval Officer with cybersecurity and IT
+      experience in the U.S. Navy, she is currently the GRC Manager at Taylor Farms and
+      holds a Master's degree in Cybersecurity.
+
+  - name: Kelly Robertson
+    role: Education Director
+    email: educationdirector@sv-issa.org
+    photo: "/images/avatar-placeholder.png"
+    bio: |
+      Kelly is a security practitioner with more than 30 years of experience across industries
+      and continents. As Principal Security Practitioner at Zisher InfoSec, his career spans
+      the U.S. Air Force, SAIC, Nokia, NetScreen, Juniper Networks, and Horizon3.ai. He
+      develops programs designed to build practitioners, not test-takers. The G.R.I.T. program
+      is the fullest expression of that conviction.
+
+  - name: Membership Director
+    role: Membership Director
+    email: membership@sv-issa.org
+    vacant: true
+
+  - name: Fred Anderson
+    role: Event Director
+    email: eventsdirector@sv-issa.org
+    photo: "/images/avatar-placeholder.png"
+    bio: |
+      Fred's distinguished career spans military service in the U.S. Army and senior roles
+      at Internet Security Systems (ISS), where he led pen testing, intrusion detection,
+      vulnerability management, and managed security services. An active ISC2 member since
+      2001, he holds his CISSP and brings deep expertise in adapting to evolving security
+      customer requirements.
+
+  - name: Jerry Swartz
+    role: Sponsorship Director
+    email: sponsorship@sv-issa.org
+    photo: "/images/avatar-placeholder.png"
+    bio: |
+      Jerry brings 20+ years in technology sales and business development across Cloud,
+      Big Data, Storage, CyberSecurity, and Software-Defined Solutions. An Air Force veteran
+      and seasoned leader, he has a proven track record of building strategic partnerships
+      and driving multimillion-dollar revenue through direct and channel ecosystems.
+
+  - name: Alexander J. Dita
+    role: Chapter Technology Director
+    email: technology@sv-issa.org
+    photo: "/images/avatar-placeholder.png"
+    bio: |
+      Alexander is responsible for Administrative and Technical Management of the SV-ISSA
+      systems for the board. He holds the OSCP, CISSP, and CCSP certifications.
+
+  - name: Edward Frye
+    role: Director at Large
+    email: director@sv-issa.org
+    photo: "/images/avatar-placeholder.png"
+    bio: |
+      Edward serves as Director at Large for the Silicon Valley ISSA chapter, contributing
+      to board oversight and strategic direction.

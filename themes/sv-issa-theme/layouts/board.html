@@ -1,0 +1,19 @@
+{{ define "main" }}
+  {{ partial "page-banner.html" . }}
+
+  {{/* Intro prose from the page's markdown body */}}
+  {{- with .Content }}
+    <div class="prose board-intro">{{ . }}</div>
+  {{- end }}
+
+  {{/* Board grid from data/board.yaml */}}
+  {{- with hugo.Data.board.members }}
+    <div class="board-grid" role="list">
+      {{- range . }}
+        {{ partial "board-member.html" . }}
+      {{- end }}
+    </div>
+  {{- else }}
+    <p>Board data not found. Ensure <code>data/board.yaml</code> exists.</p>
+  {{- end }}
+{{ end }}

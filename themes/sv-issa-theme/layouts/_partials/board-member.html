@@ -1,0 +1,43 @@
+{{- /*
+  Renders a single board member card.
+  Context: one entry from data/board.yaml.
+  Fields: name, role, email, photo (optional), bio (optional), vacant (optional bool).
+*/ -}}
+{{- $vacant := .vacant | default false -}}
+
+<article class="board-member{{ if $vacant }} board-member--vacant{{ end }}" role="listitem">
+  {{- if $vacant }}
+    <div class="board-member__avatar board-member__avatar--vacant" aria-hidden="true">
+      <span>?</span>
+    </div>
+    <div class="board-member__body">
+      <p class="board-member__role">{{ .role }}</p>
+      <p class="board-member__vacant-label">Position Open</p>
+      {{- with .email }}
+        <a class="board-member__email" href="mailto:{{ . }}">{{ . }}</a>
+      {{- end }}
+    </div>
+  {{- else }}
+    <img
+      class="board-member__avatar"
+      src="{{ .photo | default "/images/avatar-placeholder.png" }}"
+      alt="{{ .name }}"
+      width="96"
+      height="96"
+      loading="lazy"
+    >
+    <div class="board-member__body">
+      <h2 class="board-member__name">{{ .name }}</h2>
+      <p class="board-member__role">{{ .role }}</p>
+      {{- with .email }}
+        <a class="board-member__email" href="mailto:{{ . }}">{{ . }}</a>
+      {{- end }}
+      {{- with .bio }}
+        <details class="board-member__details">
+          <summary class="board-member__summary">About {{ $.name }}</summary>
+          <div class="board-member__bio prose">{{ . | markdownify }}</div>
+        </details>
+      {{- end }}
+    </div>
+  {{- end }}
+</article>

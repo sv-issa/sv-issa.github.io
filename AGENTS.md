@@ -19,6 +19,35 @@ Build the site:
 hugo --gc --minify
 ```
 
+Run the dev server (live reload):
+```bash
+hugo server
+# defaults to http://localhost:1313
+```
+
+### Playwright Tests
+
+Install dependencies and browser binaries:
+```bash
+npm install
+npx playwright install chromium
+```
+
+Run tests (starts Hugo server automatically):
+```bash
+npm test
+```
+
+Run a single test file:
+```bash
+npx playwright test tests/nav.spec.js
+```
+
+Generate an interactive HTML report:
+```bash
+npx playwright show-report
+```
+
 ## Site Structure
 
 - Theme: `themes/sv-issa-theme/` (custom theme)

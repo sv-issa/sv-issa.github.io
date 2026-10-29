@@ -9,7 +9,13 @@
 <article class="list-item{{ with $cls }} {{ . }}{{ end }}">
   <h{{ $level }}><a href="{{ $p.RelPermalink }}">{{ $p.LinkTitle }}</a></h{{ $level }}>
   {{- with $p.Params.event_date }}
-    <p class="list-item__meta">{{ . | time.Format ":date_full" }}</p>
+    <div class="list-item__date-row">
+      <span class="date-badge" aria-hidden="true">
+        <span class="date-badge__month">{{ . | time.Format "Jan" }}</span>
+        <span class="date-badge__day">{{ . | time.Format "2" }}</span>
+      </span>
+      <p class="list-item__meta">{{ . | time.Format ":date_full" }}</p>
+    </div>
   {{- end }}
   {{- $speakerNames := apply ($p.Params.event_speakers) "index" "." "name" -}}
   {{- if gt (len $speakerNames) 0 }}

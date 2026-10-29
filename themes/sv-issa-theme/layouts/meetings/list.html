@@ -6,31 +6,65 @@
   {{ end }}
 
   {{ $futureOnly := .Params.future_only | default false }}
-  {{ $dateSort := .Params.event_date_sort | default "asc" }}
-  {{ $today := now | time.Format "2006-01-02" }}
+  {{ $dateSort   := .Params.event_date_sort | default "asc" }}
+  {{ $today      := now | time.Format "2006-01-02" }}
 
-  {{ $meetings := where site.RegularPages "Type" "meetings" }}
+  {{ $all := where site.RegularPages "Section" "meetings" }}
 
+  {{ $meetings := slice }}
   {{ if $futureOnly }}
-    {{ $meetings = where $meetings "Section" "meetings" }}
-    {{ $meetings = where $meetings "Params.event_date" ">" $today }}
+    {{ $meetings = where $all "Params.event_date" ">" $today }}
   {{ else }}
-    {{ $meetings = where $meetings "Section" "meetings" }}
-    {{ $meetings = where $meetings "Params.event_date" "<=" $today }}
+    {{ $meetings = where $all "Params.event_date" "<=" $today }}
   {{ end }}
 
-  {{ if $dateSort }}
-    {{ $meetings = sort $meetings "Params.event_date" $dateSort }}
-  {{ end }}
+  {{ $meetings = sort $meetings "Params.event_date" $dateSort }}
 
-  {{ if (gt (len $meetings) 0) }}
-    <h2>{{ if $futureOnly }}Upcoming{{ else }}Past{{ end }} Meetings</h2>
+  {{ if gt (len $meetings) 0 }}
 
-    <div class="list">
-    {{ range $meetings }}
-      {{ partial "list-item.html" (dict "page" . "level" 3) }}
+    {{ if $futureOnly }}
+      {{/* ── UPCOMING: card layout ── */}}
+      <h2 class="visually-hidden">Upcoming Meetings</h2>
+      <div class="meetings-card-grid">
+        {{ range $meetings }}
+          {{ partial "meeting-card.html" . }}
+        {{ end }}
+      </div>
+
+    {{ else }}
+      {{/* ── PAST: year-grouped list ── */}}
+      <h2 class="visually-hidden">Past Meetings</h2>
+
+      {{/* Group by year: build a dict keyed by year string */}}
+      {{ $byYear := dict }}
+      {{ range $meetings }}
+        {{ $y := .Params.event_date | time.Format "2006" }}
+        {{ $group := index $byYear $y | default slice }}
+        {{ $group = $group | append . }}
+        {{ $byYear = merge $byYear (dict $y $group) }}
+      {{ end }}
+
+      {{/* Collect and sort year keys descending */}}
+      {{ $years := slice }}
+      {{ range $k, $v := $byYear }}
+        {{ $years = $years | append $k }}
+      {{ end }}
+      {{ $years = sort $years "value" "desc" }}
+
+      {{ range $years }}
+        {{ $y := . }}
+        {{ $group := index $byYear $y }}
+        <section class="meetings-year" aria-labelledby="year-{{ $y }}">
+          <h2 class="meetings-year__heading" id="year-{{ $y }}">{{ $y }}</h2>
+          <div class="list">
+            {{ range $group }}
+              {{ partial "list-item.html" (dict "page" . "level" 3) }}
+            {{ end }}
+          </div>
+        </section>
+      {{ end }}
     {{ end }}
-    </div>
+
   {{ else }}
     <p>No {{ if $futureOnly }}upcoming{{ else }}past{{ end }} meetings found.</p>
   {{ end }}

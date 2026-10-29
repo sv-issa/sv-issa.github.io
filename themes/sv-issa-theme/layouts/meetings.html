@@ -1,6 +1,10 @@
 {{ define "main" }}
   {{ partial "page-banner.html" . }}
 
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/meetings/past/">← Past Meetings</a>
+  </nav>
+
   <div class="detail">
     <div class="prose">
       {{ .Content }}
@@ -38,8 +42,19 @@
 
       {{ with .Params.event_speakers }}
         <h3>{{ if eq (len .) 1 }}Speaker{{ else }}Speakers{{ end }}</h3>
-        <ul class="plain-list">
-          {{ range . }}<li>{{ .name }}</li>{{ end }}
+        <ul class="plain-list aside-speakers">
+          {{ range . }}
+            <li class="aside-speaker">
+              {{- if .image }}
+                <img class="aside-speaker__photo"
+                     src="{{ relURL .image }}"
+                     alt="{{ .name }}"
+                     width="36" height="36"
+                     loading="lazy">
+              {{- end }}
+              <span>{{ .name }}</span>
+            </li>
+          {{ end }}
         </ul>
       {{ end }}
 

@@ -4,12 +4,31 @@
 {{- if $jobs }}
   <div class="card-grid">
   {{- range $jobs }}
-    {{ partial "list-item.html" (dict "page" . "level" 3 "class" "card") }}
+    <article class="card job-card">
+      {{- with .Params.job_company }}
+        <p class="job-card__company">{{ . }}</p>
+      {{- end }}
+      <h3 class="job-card__title">
+        <a href="{{ .RelPermalink }}">{{ .Params.job_title | default .LinkTitle }}</a>
+      </h3>
+      {{- with .Params.job_location }}
+        <p class="job-card__meta">📍 {{ . }}</p>
+      {{- end }}
+      {{- with .Summary }}
+        <p class="job-card__summary">
+          {{ . | replaceRE "<[^>]+>" " " | htmlUnescape | replaceRE `\s+` " " | truncate 120 }}
+        </p>
+      {{- end }}
+      <a class="btn" href="{{ .RelPermalink }}">View job</a>
+    </article>
   {{- end }}
   </div>
 {{- else }}
   <p>There are no current job postings.</p>
 {{- end }}
 
-<p>Job postings expire after 90 days. To have your posting listed here
-for free for 90 days, please send it in Word or HTML format to webmaster@sv-issa.org.</p>
+<p class="small">
+  Job postings are listed free for 90 days.
+  Submit yours in Word or HTML format to
+  <a href="mailto:webmaster@sv-issa.org">webmaster@sv-issa.org</a>.
+</p>

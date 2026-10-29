@@ -4,7 +4,19 @@
 {{- with $trainings }}
   <div class="card-grid">
   {{- range . }}
-    {{ partial "list-item.html" (dict "page" . "level" 3 "class" "card") }}
+    <article class="card training-card">
+      <h3 class="training-card__title">
+        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+      </h3>
+      {{- with .Summary }}
+        <p class="training-card__summary">
+          {{ . | replaceRE "<[^>]+>" " " | htmlUnescape | replaceRE `\s+` " " | truncate 140 }}
+        </p>
+      {{- end }}
+      <a class="btn" href="{{ .RelPermalink }}">Learn more</a>
+    </article>
   {{- end }}
   </div>
+{{- else }}
+  <p>No upcoming trainings at this time.</p>
 {{- end }}

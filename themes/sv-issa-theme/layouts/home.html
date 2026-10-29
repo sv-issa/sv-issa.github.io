@@ -1,9 +1,29 @@
 {{ define "main" }}
   {{ partial "home-meetings.html" . }}
 
+  <section class="section stat-bar" aria-label="Chapter at a glance">
+    <div class="stat-bar__inner">
+      <div class="stat-bar__item">
+        <span class="stat-bar__number">250+</span>
+        <span class="stat-bar__label">Members</span>
+      </div>
+      <div class="stat-bar__divider" aria-hidden="true"></div>
+      <div class="stat-bar__item">
+        <span class="stat-bar__number">Monthly</span>
+        <span class="stat-bar__label">Meetups</span>
+      </div>
+      <div class="stat-bar__divider" aria-hidden="true"></div>
+      <div class="stat-bar__item">
+        <span class="stat-bar__number">Silicon Valley</span>
+        <span class="stat-bar__label">San Jose · Sunnyvale · Santa Clara</span>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
-    {{ .Content }}
-    <p>Our chapter meetings typically take place on the third Tuesday of each month from 6:00 PM to 8:30 PM, with dinner provided.</p>
+    <div class="prose">
+      {{ .Content }}
+    </div>
   </section>
 
   <section class="section section--alt">

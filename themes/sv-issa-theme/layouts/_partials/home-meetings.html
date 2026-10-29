@@ -1,21 +1,39 @@
-{{- /* Hero: the next upcoming meeting. Renders nothing when none is scheduled. */ -}}
-{{- $today := now | time.Format "2006-01-02" -}}
+{{- /* Hero: the next upcoming meeting + a secondary list of up to 3 more. */ -}}
+{{- $today    := now | time.Format "2006-01-02" -}}
 {{- $meetings := where site.RegularPages "Type" "meetings" -}}
-{{- $meetings = where $meetings "Params.event_date" ">" $today -}}
-{{- $meetings = sort $meetings "Params.event_date" "asc" -}}
+{{- $upcoming := where $meetings "Params.event_date" ">" $today -}}
+{{- $upcoming  = sort $upcoming "Params.event_date" "asc" -}}
+{{- $next      := index $upcoming 0 -}}
+{{- $rest      := after 1 $upcoming | first 3 -}}
 
-{{- range first 1 $meetings }}
+{{- with $next }}
   {{- $end := .Params.event_time_end }}
   <section class="hero" aria-labelledby="next-meeting">
     <div class="hero__inner">
       <p class="hero__eyebrow">Next meeting</p>
-      <h1 class="hero__title" id="next-meeting"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h1>
+      <h1 class="hero__title" id="next-meeting">
+        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+      </h1>
       <p class="hero__meta">
         {{- .Params.event_date | time.Format ":date_full" }}
         {{- with .Params.event_time_start }} · {{ . }}{{ with $end }} – {{ . }}{{ end }}{{ end }}
         {{- with .Params.event_location }} · {{ . }}{{ end }}
       </p>
-      <a class="btn" href="{{ .Params.event_rsvp_url | default .RelPermalink }}">Register</a>
+      <a class="btn" href="{{ .Params.event_rsvp_url | default .RelPermalink }}">Register →</a>
+
+      {{- with $rest }}
+        <div class="hero__more">
+          <p class="hero__more-label">Also coming up</p>
+          <ul class="hero__more-list">
+            {{- range . }}
+              <li>
+                <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+                <span>{{ .Params.event_date | time.Format "Jan 2, 2006" }}</span>
+              </li>
+            {{- end }}
+          </ul>
+        </div>
+      {{- end }}
     </div>
   </section>
 {{- else }}

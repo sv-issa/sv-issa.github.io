@@ -973,6 +973,228 @@ a:visited {
   white-space: nowrap;
 }
 
+/* ==========================================================================
+   Phase 3: Homepage components
+   ========================================================================== */
+
+/* Hero: secondary upcoming meetings list */
+.hero__more {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--on-blue-rule);
+}
+
+.hero__more-label {
+  margin-bottom: var(--space-2);
+  color: var(--on-blue-muted);
+  font-size: var(--text-label);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero__more-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.hero__more-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-3);
+}
+
+.hero__more-list a {
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: var(--text-sm);
+}
+
+.hero__more-list a:hover {
+  text-decoration: underline;
+}
+
+.hero__more-list span {
+  color: var(--on-blue-muted);
+  font-size: var(--text-sm);
+}
+
+/* Stat bar */
+.stat-bar {
+  padding-block: var(--space-3);
+}
+
+.stat-bar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+  justify-content: center;
+}
+
+.stat-bar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-bar__number {
+  font-size: var(--text-h3);
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1.1;
+}
+
+.stat-bar__label {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin-top: var(--space-1);
+}
+
+.stat-bar__divider {
+  width: 1px;
+  height: 2.5rem;
+  background: var(--line);
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .stat-bar__divider { display: none; }
+  .stat-bar__inner { gap: var(--space-3); }
+}
+
+/* Job card */
+.job-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.job-card__company {
+  margin: 0;
+  font-size: var(--text-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.job-card__title {
+  margin: 0;
+  font-size: var(--text-h4);
+}
+
+.job-card__title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.job-card__title a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.job-card__meta {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+.job-card__summary {
+  flex: 1;
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+.job-card .btn {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-block: var(--space-1);
+  font-size: var(--text-sm);
+}
+
+/* Training card — mirrors job card */
+.training-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.training-card__title {
+  margin: 0;
+  font-size: var(--text-h4);
+}
+
+.training-card__title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.training-card__title a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.training-card__summary {
+  flex: 1;
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+.training-card .btn {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-block: var(--space-1);
+  font-size: var(--text-sm);
+}
+
+/* CTA band (contact section) */
+.cta-band {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.cta-band__title {
+  margin-bottom: var(--space-2);
+}
+
+.cta-band__text {
+  margin: 0;
+  max-width: 42ch;
+  color: var(--muted);
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+/* Outline button variant for secondary CTAs */
+.btn--outline {
+  background: transparent;
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.btn--outline:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
 /* --- Print -------------------------------------------------------------- */
 /* Drop navigation chrome and colored bands; keep the content and links. */
 @media print {

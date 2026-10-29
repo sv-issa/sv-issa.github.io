@@ -1,8 +1,11 @@
 {{- /*
   A card for the Upcoming Meetings page.
-  Context: a meeting page.
+  Params: page (required), summaryLen (optional, default 140).
 */ -}}
-{{- $p := . -}}
+{{- $p := .page -}}
+{{- $summaryLen := .summaryLen | default 140 -}}
+{{- $showRegister := .showRegister | default true -}}
+{{- $showLocation := .showLocation | default true -}}
 {{- $date := $p.Params.event_date -}}
 
 <article class="meeting-card card">
@@ -22,7 +25,7 @@
     <p class="meeting-card__meta">
       {{- with $date }}{{ $date | time.Format ":date_full" }}{{ end }}
       {{- with $p.Params.event_time_start }} · {{ . }}{{ with $p.Params.event_time_end }} – {{ . }}{{ end }}{{ end }}
-      {{- with $p.Params.event_location }} · {{ . }}{{ end }}
+      {{- if $showLocation }}{{ with $p.Params.event_location }} · {{ . }}{{ end }}{{ end -}}
     </p>
 
     {{- $speakerNames := apply ($p.Params.event_speakers) "index" "." "name" -}}
@@ -35,12 +38,15 @@
 
     {{- with $p.Summary }}
       <p class="meeting-card__summary">
-        {{ . | replaceRE "<[^>]+>" " " | htmlUnescape | replaceRE `\s+` " " | truncate 140 }}
+        {{ . | replaceRE "<[^>]+>" " " | htmlUnescape | replaceRE `\s+` " " | truncate $summaryLen }}
+        <a class="meeting-card__readmore" href="{{ $p.RelPermalink }}">Read more</a>
       </p>
     {{- end }}
 
-    <a class="btn" href="{{ $p.Params.event_rsvp_url | default $p.RelPermalink }}">
-      Register →
-    </a>
+    {{- if $showRegister }}
+      <a class="btn" href="{{ $p.Params.event_rsvp_url | default $p.RelPermalink }}">
+        Register →
+      </a>
+    {{- end -}}
   </div>
 </article>

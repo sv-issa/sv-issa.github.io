@@ -23,16 +23,16 @@
   {{ if gt (len $meetings) 0 }}
 
     {{ if $futureOnly }}
-      {{/* ── UPCOMING: card layout ── */}}
+      {{/* ── UPCOMING: full-width cards (typically 1–2) ── */}}
       <h2 class="visually-hidden">Upcoming Meetings</h2>
-      <div class="meetings-card-grid">
+      <div class="meetings-upcoming-list">
         {{ range $meetings }}
-          {{ partial "meeting-card.html" . }}
+          {{ partial "meeting-card.html" (dict "page" . "showRegister" true) }}
         {{ end }}
       </div>
 
     {{ else }}
-      {{/* ── PAST: year-grouped list ── */}}
+      {{/* ── PAST: two-column grid grouped by year ── */}}
       <h2 class="visually-hidden">Past Meetings</h2>
 
       {{/* Group by year: build a dict keyed by year string */}}
@@ -56,9 +56,9 @@
         {{ $group := index $byYear $y }}
         <section class="meetings-year" aria-labelledby="year-{{ $y }}">
           <h2 class="meetings-year__heading" id="year-{{ $y }}">{{ $y }}</h2>
-          <div class="list">
+          <div class="meetings-past-grid">
             {{ range $group }}
-              {{ partial "list-item.html" (dict "page" . "level" 3) }}
+              {{ partial "meeting-card.html" (dict "page" . "summaryLen" 120 "showRegister" false "showLocation" false) }}
             {{ end }}
           </div>
         </section>

@@ -16,8 +16,7 @@ members:
       security certifications: Pyrotechnic Operator, Avy-1 and is a PADI Rescue Diver. He
       was raised in Tokyo, speaks Japanese and is well versed in the culture and cuisine of Japan.
 
-  - name: Vice President
-    role: Vice President
+  - role: Vice President
     email: vicepresident@sv-issa.org
     vacant: true
 
@@ -64,8 +63,7 @@ members:
       develops programs designed to build practitioners, not test-takers. The G.R.I.T. program
       is the fullest expression of that conviction.
 
-  - name: Membership Director
-    role: Membership Director
+  - role: Membership Director
     email: membership@sv-issa.org
     vacant: true
 

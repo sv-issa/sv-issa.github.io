@@ -80,12 +80,14 @@ test.describe('homepage components', () => {
     await expect(page.locator('.stat-bar__number').first()).toBeVisible();
   });
 
-  test('hero shows a Register button when present', async ({ page }) => {
+  test('hero shows a Register button, or the page has no upcoming meeting', async ({ page }) => {
     await page.goto(HOME);
     const hero = page.locator('.hero');
-    if ((await hero.count()) > 0) {
-      await expect(hero.getByRole('link', { name: /Register/i })).toBeVisible();
+    if (await hero.count() === 0) {
+      await expect(page.locator('h1.visually-hidden')).toHaveCount(1);
+      return;
     }
+    await expect(hero.getByRole('link', { name: /Register/i })).toBeVisible();
   });
 
   test('job cards render on homepage', async ({ page }) => {
@@ -101,6 +103,20 @@ test.describe('board page', () => {
     await page.goto('/about/sv-issa-board/');
     const cards = page.locator('.board-member');
     expect(await cards.count()).toBeGreaterThan(0);
+  });
+
+  test('board page loads without errors', async ({ page }) => {
+    const response = await page.goto('/about/sv-issa-board/');
+    expect(response?.status()).toBe(200);
+    const body = await page.textContent('body');
+    for (const name of ['Mike Skurko', 'Tyler Pinckard', 'Victor Chang', 'Elissa Silveira', 'Kelly Robertson', 'Fred Anderson', 'Jerry Swartz', 'Alexander J. Dita', 'Edward Frye']) {
+      expect(body).toContain(name);
+    }
+  });
+
+  test('avatar placeholder image is accessible', async ({ page }) => {
+    const resp = await page.goto('/images/avatar-placeholder.png');
+    expect(resp?.status()).toBe(200);
   });
 
   test('each non-vacant card has an avatar image', async ({ page }) => {
@@ -135,9 +151,19 @@ test.describe('meetings list pages', () => {
   test('upcoming meetings shows card grid when meetings exist', async ({ page }) => {
     await page.goto('/meetings/upcoming/');
     const cards = page.locator('.meeting-card');
-    if ((await cards.count()) > 0) {
-      await expect(cards.first().locator('.meeting-card__date')).toBeVisible();
+    if (await cards.count() === 0) {
+      await expect(page.getByText('No upcoming meetings found.')).toBeVisible();
+      return;
     }
+    await expect(cards.first().locator('.meeting-card__date')).toBeVisible();
+  });
+
+  test('upcoming meeting breadcrumb links to Upcoming Meetings', async ({ page }) => {
+    await page.goto('/meetings/upcoming/');
+    const first = page.locator('.meeting-card .meeting-card__title a').first();
+    if (await first.count() === 0) test.skip(true, 'no upcoming meetings in content');
+    await first.click();
+    await expect(page.locator('.breadcrumb a')).toHaveAttribute('href', /\/meetings\/upcoming\//);
   });
 
   test('meeting detail has a breadcrumb back to past meetings', async ({ page }) => {

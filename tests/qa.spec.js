@@ -114,7 +114,42 @@ test.describe('motion', () => {
   });
 });
 
-// ── Phase 7: no-script assertions (Phase 2 removed all JS) ────────────────
+test.describe('interaction states', () => {
+  test('grid card lifts on hover (desktop)', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto(HOME);
+    const card = page.locator('.card-grid > .card').first();
+    const before = await card.evaluate((el) => getComputedStyle(el).transform);
+    await card.hover();
+    await expect.poll(() => card.evaluate((el) => getComputedStyle(el).transform)).not.toBe(before);
+  });
+
+  test('aside card on detail page does not lift on hover', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto(MEETING);
+    const aside = page.locator('aside.detail__aside').first();
+    await aside.hover();
+    const t = await aside.evaluate((el) => getComputedStyle(el).transform);
+    expect(t === 'none' || t === 'matrix(1, 0, 0, 1, 0, 0)').toBe(true);
+  });
+
+  test('nav toggle shows a focus ring when the checkbox is focused via keyboard', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 800 });
+    await page.goto(HOME);
+    await page.locator('.nav-checkbox').focus();
+    await page.keyboard.press('Tab'); // move to the next focusable item, then back
+    await page.keyboard.press('Shift+Tab');
+    const outline = await page.locator('label.nav-toggle').evaluate(
+      (el) => getComputedStyle(el).outlineStyle
+    );
+    expect(outline).toBe('solid');
+  });
+
+  test('checkbox is not aria-hidden', async ({ page }) => {
+    await page.goto(HOME);
+    await expect(page.locator('.nav-checkbox')).not.toHaveAttribute('aria-hidden', 'true');
+  });
+});
 
 test.describe('no script', () => {
   for (const url of [HOME, ...ALL_PAGES]) {

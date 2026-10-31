@@ -4,6 +4,7 @@
   Fields: name, role, email, photo (optional), bio (optional), vacant (optional bool).
 */ -}}
 {{- $vacant := .vacant | default false -}}
+{{- $name := .name -}}
 
 <article class="board-member{{ if $vacant }} board-member--vacant{{ end }}" role="listitem">
   {{- if $vacant }}
@@ -21,7 +22,7 @@
     <img
       class="board-member__avatar"
       src="{{ .photo | default "/images/avatar-placeholder.png" }}"
-      alt="{{ .name }}"
+      alt="{{ $name }}"
       width="96"
       height="96"
       loading="lazy"
@@ -34,7 +35,7 @@
       {{- end }}
       {{- with .bio }}
         <details class="board-member__details">
-          <summary class="board-member__summary">About {{ $.name }}</summary>
+          <summary class="board-member__summary">About {{ $name }}</summary>
           <div class="board-member__bio prose">{{ . | markdownify }}</div>
         </details>
       {{- end }}

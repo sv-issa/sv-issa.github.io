@@ -1626,3 +1626,18 @@ details[open] .board-member__summary::before {
   color: inherit;
   text-decoration: underline;
 }
+
+/* ==========================================================================
+   Phase 6: Jobs & Career Center
+   ========================================================================== */
+
+/* Jobs page grid — wider min-width than default card-grid */
+.jobs-grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* Posted date inside job cards */
+.job-card__posted {
+  margin-top: var(--space-2);
+  margin-bottom: 0;
+}

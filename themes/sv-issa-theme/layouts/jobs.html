@@ -1,6 +1,10 @@
 {{ define "main" }}
   {{ partial "page-banner.html" . }}
 
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/jobs/">← Jobs</a>
+  </nav>
+
   <div class="detail">
     <div class="prose">
       {{ .Content }}

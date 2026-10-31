@@ -7,7 +7,7 @@
   {{- end }}
 
   {{/* Board grid from data/board.yaml */}}
-  {{- with hugo.Data.board.members }}
+  {{- with site.Data.board.members }}
     <div class="board-grid" role="list">
       {{- range . }}
         {{ partial "board-member.html" . }}

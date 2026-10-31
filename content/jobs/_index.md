@@ -1,9 +1,10 @@
 ---
 title: "Jobs"
 date: 2025-10-26T19:30:31-07:00
+layout: jobs-list
 draft: false
 ---
 
-This section contains current job openings and other helpful resources on career advancement for SV-ISSA members and other Bay Area security professionalis.
+This section contains current job openings and other helpful resources on career advancement for SV-ISSA members and other Bay Area security professionals.
 
-To post new security job openings and other career centric information in this area please send the title, a short description, and the URL for the detailed description to the chapter webmaster at webmaster@sv-issa.org.
+To post a job opening, send the title, a short description, and the URL to [webmaster@sv-issa.org](mailto:webmaster@sv-issa.org). Postings are listed free for 90 days.

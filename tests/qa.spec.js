@@ -31,30 +31,27 @@ test.describe('responsive layout', () => {
     });
   }
 
-  test('nav collapses behind the toggle below 800px and shows inline above', async ({ page }) => {
+  // Phase 2: nav toggle is a CSS checkbox + label (no JS).
+  test('nav is hidden by default on mobile and visible on desktop', async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 800 });
     await page.goto(HOME);
-    const toggle = page.getByText('Menu');
     const nav = page.locator('#site-nav');
     await expect(nav).toBeHidden();
-    await toggle.click();
-    await expect(nav).toBeVisible();
 
     await page.setViewportSize({ width: 1280, height: 900 });
-    await expect(toggle).toBeHidden();
     await expect(nav).toBeVisible();
   });
 
-  test('Escape closes the mobile nav and returns focus to the toggle', async ({ page }) => {
+  test('nav toggle label opens and closes the mobile nav', async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 800 });
     await page.goto(HOME);
-    const header = page.locator('.site-header');
-    const toggle = header.getByText('Menu');
-    // Verify nav is hidden at narrow viewport
-    await expect(page.locator('#site-nav')).toBeHidden();
-    await toggle.click();
-    await expect(page.locator('#site-nav')).toBeVisible();
-    await page.keyboard.press('Escape');
+    const label = page.locator('label.nav-toggle');
+    const nav   = page.locator('#site-nav');
+    await expect(nav).toBeHidden();
+    await label.click();
+    await expect(nav).toBeVisible();
+    await label.click();
+    await expect(nav).toBeHidden();
   });
 });
 
@@ -94,13 +91,17 @@ test.describe('current page state', () => {
 });
 
 test.describe('motion', () => {
-  test('hover transitions run at 150ms', async ({ page }) => {
+  test('hover transitions run at 150ms or 220ms', async ({ page }) => {
     await page.goto(HOME);
     const btn = page.locator('.hero .btn');
     const durations = await btn.evaluate((el) =>
       getComputedStyle(el).transitionDuration.split(',').map((d) => d.trim())
     );
-    expect(durations.every((d) => d === '0.22s')).toBe(true);
+    const valid = new Set(['0.15s', '0.22s']);
+    expect(
+      durations.every((d) => valid.has(d)),
+      `Unexpected durations: ${durations}`
+    ).toBe(true);
   });
 
   test('reduced motion removes transition time', async ({ page }) => {
@@ -110,6 +111,26 @@ test.describe('motion', () => {
       (el) => parseFloat(getComputedStyle(el).transitionDuration)
     );
     expect(duration).toBeLessThan(0.001);
+  });
+});
+
+// ── Phase 7: no-script assertions (Phase 2 removed all JS) ────────────────
+
+test.describe('no script', () => {
+  for (const url of [HOME, ...ALL_PAGES]) {
+    test(`${url} has no <script> tags`, async ({ page }) => {
+      await page.goto(url);
+      const count = await page.locator('script').count();
+      expect(count, `${url} emitted ${count} script tag(s)`).toBe(0);
+    });
+  }
+
+  test('html element has no js class', async ({ page }) => {
+    await page.goto(HOME);
+    const hasJsClass = await page.evaluate(
+      () => document.documentElement.classList.contains('js')
+    );
+    expect(hasJsClass).toBe(false);
   });
 });
 

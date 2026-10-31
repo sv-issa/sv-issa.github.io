@@ -1,9 +1,16 @@
 // Representative pages, one per layout. Shared by all specs.
-export const LIST_PAGES = ['/about/sv-issa-board/', '/meetings/past/', '/jobs/', '/certifications/'];
-export const MEETING = '/meetings/december-2025-event-sv-issa-winter-holiday-party/';
+export const LIST_PAGES = [
+  '/about/sv-issa-board/',
+  '/meetings/past/',
+  '/meetings/upcoming/',
+  '/jobs/',
+  '/certifications/',
+];
+export const HOME          = '/';
+export const MEETING       = '/meetings/december-2025-event-sv-issa-winter-holiday-party/';
 export const SPEAKER_MEETING = '/meetings/april-2026-event-mission-driven-founder-moving-technologist-entrepreneur/';
-export const ALL_PAGES = [...LIST_PAGES, MEETING, SPEAKER_MEETING];
-export const HOME = '/';
+export const JOB_DETAIL    = '/jobs/axonius-sr-sales-engineer-pacific-north-west-remote/';
+export const ALL_PAGES     = [...LIST_PAGES, MEETING, SPEAKER_MEETING, JOB_DETAIL];
 export const BREAKPOINTS = [
   { name: 'mobile', width: 360, height: 800 },
   { name: 'tablet', width: 768, height: 1024 },

@@ -4,7 +4,7 @@ draft: false
 date: 2026-09-08 15:43:34-07:00
 layout: meetings
 params:
-  event_date: 2026-10-20
+  event_date: 2026-11-27
   event_time_start: 5:30pm
   event_time_end: 8:00pm
   event_rsvp_url: https://luma.com/kszd8yw7

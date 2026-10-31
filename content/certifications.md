@@ -5,71 +5,67 @@ draft: false
 ---
 
 Certification is recommended for security professionals for future career advancement and recognition of their unique, specialized skill set. Many security positions now call for one or more specific security certifications, as a condition of employment. Government agencies, such as the Department of Defense (DoD 8570.1), require security specialists be certified.
-Recent Government regulations upon industry have furthered this certification trend, by requiring or promoting security certification. The following is a list of a few of the more common security certifications offered. A number of vendors also offer security security certificiations. Consult the individual vendor for that information. The listing of the security certifications
-below does not imply endorsement by Silicon Valley ISSA.
 
-Certified Information Systems Security Professional (CISSP)
+Recent government regulations upon industry have furthered this certification trend, by requiring or promoting security certification. The following is a list of some of the more common security certifications offered. A number of vendors also offer security certifications — consult the individual vendor for that information. The listing of the security certifications below does not imply endorsement by Silicon Valley ISSA.
 
-One of the oldest, largest, and most recognized security certification, with 60,000 professionals in 135 countries.
-The CISSP was the first credential in the field of information security, accredited by the ANSI (American National Standards Institute)
- to ISO (International Standards Organization) Standard 17024:2003. Offered by International Information Systems Security Certifications Consortium (ISC2)  
+## Certified Information Systems Security Professional (CISSP)
 
-http://www.isc2.org/ 
+One of the oldest, largest, and most recognized security certifications, with 60,000 professionals in 135 countries. The CISSP was the first credential in the field of information security, accredited by ANSI to ISO Standard 17024:2003. Offered by International Information Systems Security Certifications Consortium (ISC2).
 
-Certified Information Security Auditor (CISA)
+[isc2.org](http://www.isc2.org/)
 
-A CISA certification demonstrates knowledge of IS auditing for control and security purposes.
-More than 60,000 professionals have earned the CISA since inception. Offered by Information Systems Audit and Control Association (ISACA)  
+## Certified Information Systems Auditor (CISA)
 
-http://www.isaca.org/  
+A CISA certification demonstrates knowledge of IS auditing for control and security purposes. More than 60,000 professionals have earned the CISA since inception. Offered by Information Systems Audit and Control Association (ISACA).
 
-Certified Information Security Manager (CISM)
+[isaca.org](http://www.isaca.org/)
 
-CISM certification is for the individual who manages, designs, oversees and/or assesses an enterprise's information security.
-Offered by Information Systems Audit and Control Association (ISACA)
+## Certified Information Security Manager (CISM)
 
-http://www.isaca.org/ 
+CISM certification is for the individual who manages, designs, oversees and/or assesses an enterprise's information security. Offered by Information Systems Audit and Control Association (ISACA).
 
-Global Information Assurance Certification  (GIAC)
+[isaca.org](http://www.isaca.org/)
 
-GIAC certifications address a range of skill sets including entry level information security and broad based security essentials, as well as advanced subject areas like audit, intrusion detection, incident handling, firewalls and perimeter protection, forensics, hacker techniques, and Windows and Unix operating system security and secure software and application coding.
-GIAC has achieved accreditation by ANSI/ISO/IEC 17024. Details at:
+## Global Information Assurance Certification (GIAC)
 
-http://www.giac.org/ and http://www.sans.org/ 
+GIAC certifications address a range of skill sets including entry level information security and broad based security essentials, as well as advanced subject areas like audit, intrusion detection, incident handling, firewalls and perimeter protection, forensics, hacker techniques, and Windows and Unix operating system security and secure software and application coding. GIAC has achieved accreditation by ANSI/ISO/IEC 17024.
 
-CompTIA Security+™ Certification
+[giac.org](http://www.giac.org/) · [sans.org](http://www.sans.org/)
 
-Security+ validates knowledge of communication security, infrastructure security, cryptography, operational security, and general security concepts. Details at:
+## CompTIA Security+
 
-http://certification.comptia.org/security/ 
+CompTIA Security+ validates knowledge of communication security, infrastructure security, cryptography, operational security, and general security concepts.
 
-Other ISC2 Certications Systems Security Certified Practitioner (SSCP)
+[certification.comptia.org/security/](https://certification.comptia.org/security/)
 
-SSCP credential is ideal for those entry-level and junior working security professionals, who do not yet meet the more stringent criteria of the CISSP.
-Offered by International Information Systems Security Certifications Consortium (ISC2).  
+## ISC2 Additional Certifications
 
-http://www.isc2.org/ 
+### Systems Security Certified Practitioner (SSCP)
 
-Certification and Accreditation Professional (CAP)
+SSCP is ideal for those entry-level and junior working security professionals who do not yet meet the more stringent criteria of the CISSP. Offered by International Information Systems Security Consortium (ISC2).
 
-Credential applies to professionals responsible for formalizing processes used to assess risk and establish security requirements, as well as ensure information systems possess security commensurate with the level of exposure to potential risk. Offered by ISC2
+[isc2.org](http://www.isc2.org/)
 
-http://www.isc2.org/ 
+### Certification and Accreditation Professional (CAP)
 
-Information Systems Security Architecture Professional ISSAP
+Credential applies to professionals responsible for formalizing processes used to assess risk and establish security requirements, as well as ensure information systems possess security commensurate with the level of exposure to potential risk. Offered by ISC2.
 
-Recognition for Advanced Expertise in Information Security Architecture. Requires current CISSP. Offered by ISC2.   
+[isc2.org](http://www.isc2.org/)
 
-http://www.isc2.org/ 
+### Information Systems Security Architecture Professional (ISSAP)
 
-Information Systems Security Engineering Professional ISSEP
+Recognition for Advanced Expertise in Information Security Architecture. Requires current CISSP. Offered by ISC2.
 
-Recognition for Advanced Expertise in Information Security Engineering. Requires current CISSP. Offered by ISC2.   
+[isc2.org](http://www.isc2.org/)
 
-http://www.isc2.org/ 
+### Information Systems Security Engineering Professional (ISSEP)
 
-Information Systems Security Management Professional ISSMP
+Recognition for Advanced Expertise in Information Security Engineering. Requires current CISSP. Offered by ISC2.
 
-Recognition for Advanced Expertise in Information Security Management. Requires current CISSP. Offered by ISC2. 
+[isc2.org](http://www.isc2.org/)
 
-http://www.isc2.org/ 
+### Information Systems Security Management Professional (ISSMP)
+
+Recognition for Advanced Expertise in Information Security Management. Requires current CISSP. Offered by ISC2.
+
+[isc2.org](http://www.isc2.org/)

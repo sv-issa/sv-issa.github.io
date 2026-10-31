@@ -3,7 +3,7 @@
   {{- $logo = printf $logo (relURL "images/svissa-logo.png") (site.Title) -}}
   <p class="wordmark"><a href="{{ site.Home.RelPermalink }}">{{ $logo | safeHTML }}</a></p>
 
-  <label class="nav-toggle" for="nav-toggle" aria-label="Toggle navigation">
+  <label class="nav-toggle" for="nav-toggle">
     <span class="nav-toggle-bars" aria-hidden="true"></span>
     <span class="nav-toggle-text">Menu</span>
   </label>

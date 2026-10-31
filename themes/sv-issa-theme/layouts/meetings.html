@@ -1,8 +1,14 @@
 {{ define "main" }}
   {{ partial "page-banner.html" . }}
 
+  {{- $today    := now | time.Format "2006-01-02" }}
+  {{- $isUpcoming := gt (.Params.event_date | time.Format "2006-01-02") $today }}
   <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/meetings/past/">← Past Meetings</a>
+    {{- if $isUpcoming }}
+      <a href="{{ relURL "meetings/upcoming/" }}">← Upcoming Meetings</a>
+    {{- else }}
+      <a href="{{ relURL "meetings/past/" }}">← Past Meetings</a>
+    {{- end }}
   </nav>
 
   <div class="detail">

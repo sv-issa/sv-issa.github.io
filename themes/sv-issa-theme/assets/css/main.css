@@ -342,9 +342,7 @@ a:visited {
 .nav-toggle-bars::before { top: -6px; }
 .nav-toggle-bars::after { top: 6px; }
 
-.nav-toggle[aria-expanded="true"] .nav-toggle-bars { background: transparent; }
-.nav-toggle[aria-expanded="true"] .nav-toggle-bars::before { transform: translateY(6px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] .nav-toggle-bars::after { transform: translateY(-6px) rotate(-45deg); }
+
 
 /* Nav: mobile first — hidden by default, revealed by CSS checkbox. */
 .site-nav {
@@ -380,6 +378,13 @@ a:visited {
 
 .nav-checkbox:checked ~ .container .nav-toggle-bars::after {
   transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Keyboard focus is on the hidden checkbox; show the ring on its visible label. */
+.nav-checkbox:focus-visible ~ .container .nav-toggle {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--radius);
 }
 
 .site-nav ul {
@@ -730,12 +735,32 @@ a:visited {
   color: var(--white);
 }
 
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+}
+
 /* Card: bordered surface for asides and grouped content. */
 .card {
   padding: var(--space-3);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   background: var(--bg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-md) var(--ease),
+              transform   var(--duration-md) var(--ease);
+}
+
+/* Lift only grid cards, not the detail-page asides. Hover effects are
+   gated so touch devices don't get a card "stuck" in the lifted state. */
+@media (hover: hover) {
+  .card-grid > .card:hover,
+  .meetings-card-grid > .card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
 }
 
 /* List: stacked rows separated by a hairline. */
@@ -746,7 +771,18 @@ a:visited {
 
 .list-item {
   padding-block: var(--space-3);
+  padding-inline: var(--space-2);
   border-top: 1px solid var(--line);
+  border-left: 3px solid transparent;
+  transition: border-color var(--duration) var(--ease),
+              background   var(--duration) var(--ease);
+}
+
+@media (hover: hover) {
+  .list-item:hover {
+    border-left-color: var(--blue);
+    background: var(--bg-alt);
+  }
 }
 
 .list-item:last-child {

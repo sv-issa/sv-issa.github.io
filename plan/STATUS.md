@@ -88,7 +88,14 @@ FLAG: eliminating-operational-blindspots-incident-exchange-and-collaboration –
 - [x] meetings-15  (8 pages, ~27 KB article HTML)
   Converted: bugbounty-program-presented-ncc-group, holiday-social, starting-metrics-program, addressing-risks-compliance-and-threats-cloud-world, data-centric-security-key-digital-business-success, silicon-valley-san-francisco-social-event, legal-concepts-cybersecurity, Utilizing-Contextual-Awareness-Combat-Cyber-Threats
   FLAG: Utilizing-Contextual-Awareness-Combat-Cyber-Threats – image: sv-issa-conference-location.png copied as /images/sv-issa-conference-location.png
-- [ ] meetings-16  (8 pages, ~32 KB article HTML)
+- [x] meetings-16  (8 pages, ~32 KB article HTML)
+  Converted: 2014-holiday-party, applying-critical-controls-combat-advanced-threats-and-secure-your-infrastructure, automating-security-across-cloud-services, considerations-cloud-and-mobile-security-0, no-april-meeting-due-rsa, no-meeting-june-see-you-cornerstones-trust, protecting-and-monitoring-privileged-pathway-new-layer-security-protect-heart-enterprise, twenty-steps-towards-strong-cyber-security-program
+FLAG: 2014-holiday-party – link: constantcontact.com image in body dropped
+FLAG: applying-critical-controls-combat-advanced-threats-and-secure-your-infrastructure – link: constant contact removed
+FLAG: automating-security-across-cloud-services – link: constant contact removed
+FLAG: considerations-cloud-and-mobile-security-0 – link: constant contact removed
+FLAG: protecting-and-monitoring-privileged-pathway-new-layer-security-protect-heart-enterprise – link: constant contact removed
+FLAG: twenty-steps-towards-strong-cyber-security-program – link: constant contact removed
 - [ ] meetings-17  (8 pages, ~32 KB article HTML)
 - [ ] meetings-18  (6 pages, ~34 KB article HTML)
 - [ ] meetings-19  (8 pages, ~34 KB article HTML)

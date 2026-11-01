@@ -29,7 +29,7 @@ test.describe('meeting detail', () => {
 
   test('RSVP button carries the ISSA utm parameter', async ({ page }) => {
     await page.goto(MEETING);
-    await expect(page.getByRole('link', { name: 'RSVP' })).toHaveAttribute('href', /utm_source=issa_website$/);
+    await expect(page.getByRole('link', { name: 'RSVP' })).toHaveAttribute('href', /utm_source=svissa_website$/);
   });
 
   test('no broken markup from the old template', async ({ page }) => {

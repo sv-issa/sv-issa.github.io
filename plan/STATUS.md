@@ -135,7 +135,11 @@ FLAG: cissp-training-opportunity – other: not a job (recruiter solicitation), 
 (none - all 8 job posts converted cleanly; no Constant Contact links, no images to copy, no map iframes)
 ### Batch jobs-04 flags
 FLAG: free-job-postings – other: not a job (informational page about SV-ISSA free posting service), converted with job_company set to Silicon Valley ISSA
-- [x] jobs-04  (9 pages, ~36 KB article HTML)- [ ] jobs-05  (10 pages, ~37 KB article HTML)
+- [x] jobs-04  (9 pages, ~36 KB article HTML)
+- [ ] jobs-05  (10 pages, ~37 KB article HTML)
+### Batch jobs-05 flags
+FLAG: information-security-officer – other: not a job, just an external application link for Stanford position
+- [x] jobs-05
 - [ ] jobs-06  (6 pages, ~37 KB article HTML)
 - [ ] jobs-07  (10 pages, ~29 KB article HTML)
 - [ ] jobs-08  (8 pages, ~39 KB article HTML)

@@ -129,7 +129,10 @@ FLAG: art-selling-security-peers-executive-management – link: constant contact
 
 ### Batch jobs-02 flags
 FLAG: cissp-training-opportunity – other: not a job (recruiter solicitation), converted with job_company set to sender's org
-- [ ] jobs-03  (8 pages, ~32 KB article HTML)
+- [x] jobs-03  (8 pages, ~32 KB article HTML)
+
+### Batch jobs-03 flags
+(none - all 8 job posts converted cleanly; no Constant Contact links, no images to copy, no map iframes)
 - [ ] jobs-04  (9 pages, ~36 KB article HTML)
 - [ ] jobs-05  (10 pages, ~37 KB article HTML)
 - [ ] jobs-06  (6 pages, ~37 KB article HTML)

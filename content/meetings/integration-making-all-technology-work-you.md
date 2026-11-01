@@ -1,5 +1,5 @@
 ---
-title: Integration: Making all this technology work for you
+title: 'Integration: Making all this technology work for you'
 draft: false
 date: 2018-01-29 16:09:53-08:00
 layout: meetings

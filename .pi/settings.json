@@ -1,0 +1,8 @@
+{
+  "subagents": {
+    "agentOverrides": {
+      "worker": { "model": "inherit", "thinking": "off" },
+      "reviewer": { "model": "inherit", "thinking": "off" }
+    }
+  }
+}

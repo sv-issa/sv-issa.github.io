@@ -1,5 +1,5 @@
 ---
-title: 'Security is Easy - How I'"'"'ve Mapped All Legitimate OS Behavior - Evening Meeting'
+title: 'Security is Easy - How I''ve Mapped All Legitimate OS Behavior - Evening Meeting'
 date: 2018-08-25T09:04:58-07:00
 layout: meetings
 params:

@@ -19,7 +19,11 @@
         {{- with .Params.event_time_start }} · {{ . }}{{ with $end }} – {{ . }}{{ end }}{{ end }}
         {{- with .Params.event_location }} · {{ . }}{{ end }}
       </p>
-      <a class="btn" href="{{ .Params.event_rsvp_url | default .RelPermalink }}">Register →</a>
+      {{ with .Params.event_rsvp_url }}
+        <a class="btn" href="{{ . }}?utm_source=svissa_website">Register →</a>
+      {{ else }}
+        <a class="btn" href="{{ .RelPermalink }}">Register →</a>
+      {{ end }}
 
       {{- with $rest }}
         <div class="hero__more">

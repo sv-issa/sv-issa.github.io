@@ -115,7 +115,10 @@ FLAG: art-selling-security-peers-executive-management – link: constant contact
 
 ### Batch 19 flags (meetings-19)
 (none - all 8 pages converted cleanly; no Constant Contact RSVP links (pre-2024), map iframes dropped with links as event_map_url, no speaker images to copy)
-- [ ] meetings-20  (3 pages, ~10 KB article HTML)
+- [x] meetings-20  (3 pages, ~10 KB article HTML)
+
+### Batch 20 flags (meetings-20)
+- FLAG: why-your-enterprise-should-be-managing-its-certificates – link: pdf not in crawl, will 404 after cutover
 
 ## Stage 4 – Jobs (99)
 - [ ] jobs-01  (9 pages, ~36 KB article HTML)

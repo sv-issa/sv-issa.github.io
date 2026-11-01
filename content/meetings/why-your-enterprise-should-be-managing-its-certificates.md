@@ -17,3 +17,5 @@ params:
 ---
 
 This presentation goes deeper into just what the root causes of key and certificate encryption risks are and what actions to take to manage these risks. The Flame Virus, weak key management policies, and ongoing attacks on certificate infrastructure have all heightened the requirement for more robust management of encryption keys and certificates. Learn what Enterprise Key and Certificate Management Policies are recommended as a best practice to help you manage keys and certificates and mitigate your risks.
+
+[Venafi EKCM Risks - Silicon Valley ISSA - 2012-10-16.pdf](https://sv-issa.org/sites/sv-issa.org/files/Venafi%20EKCM%20Risks%20-%20Silicon%20Valley%20ISSA%20-%202012-10-16.pdf)

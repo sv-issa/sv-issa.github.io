@@ -138,7 +138,7 @@ FLAG: free-job-postings – other: not a job (informational page about SV-ISSA f
 - [x] jobs-04  (9 pages, ~36 KB article HTML)
 - [ ] jobs-05  (10 pages, ~37 KB article HTML)
 ### Batch jobs-05 flags
-FLAG: information-security-officer – other: not a job, just an external application link for Stanford position
+none - all 10 pages are valid job postings; information-security-officer has minimal body content (only an external Stanford application link)
 - [x] jobs-05
 - [ ] jobs-06  (6 pages, ~37 KB article HTML)
 - [ ] jobs-07  (10 pages, ~29 KB article HTML)

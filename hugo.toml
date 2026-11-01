@@ -97,6 +97,11 @@ enableGitInfo = true
     weight = 2
     pageRef = '/certifications'
     parent = 'Career Center'
+  [[menus.main]]
+    name = 'Education'
+    weight = 3
+    pageRef = '/education'
+    parent = 'Career Center'
 
   [[menus.main]]
     name = 'Social'

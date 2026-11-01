@@ -1,7 +1,7 @@
 ---
 title: "2025 CISSP Review Course Starting May 8th"
 date: 2025-10-27T01:20:05-07:00
-expiryDate: 2028-12-31T23:59:00-08:00
+expiryDate: 2026-07-22T23:59:00-07:00
 draft: false
 tags: []
 ---

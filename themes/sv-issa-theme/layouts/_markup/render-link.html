@@ -1,0 +1,20 @@
+{{- /*
+  Add target="_blank" rel="noopener" to Google Maps links; otherwise render unchanged.
+  This is a Markdown link render hook (Hugo ≥ v0.123).
+*/ -}}
+{{- $dst := .Destination | lower -}}
+{{- $isMaps := false -}}
+{{- if strings.Contains $dst "maps.google.com" -}}
+  {{- $isMaps = true -}}
+{{- else if strings.Contains $dst "google.com/maps" -}}
+  {{- $isMaps = true -}}
+{{- else if strings.Contains $dst "goo.gl/maps" -}}
+  {{- $isMaps = true -}}
+{{- else if strings.Contains $dst "maps.app.goo.gl" -}}
+  {{- $isMaps = true -}}
+{{- end -}}
+{{- if $isMaps -}}
+  <a href="{{ .Destination | safeURL }}" target="_blank" rel="noopener">{{ .Text }}</a>
+{{- else -}}
+  <a href="{{ .Destination }}">{{ .Text }}</a>
+{{- end -}}

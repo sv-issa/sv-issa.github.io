@@ -42,7 +42,7 @@
           <div><dt>Time</dt><dd>{{ . }}{{ with $.Params.event_time_end }} – {{ . }}{{ end }}</dd></div>
         {{ end }}
         {{ with .Params.event_location }}
-          <div><dt>Location</dt><dd>{{ . }}{{ with $.Params.event_address }}<br>{{ . }}{{ end }}</dd></div>
+          <div><dt>Location</dt><dd>{{ if $.Params.event_map_url }}<a href="{{ $.Params.event_map_url }}" target="_blank" rel="noopener">{{ . }}</a>{{ else }}{{ . }}{{ end }}{{ with $.Params.event_address }}<br>{{ . }}{{ end }}</dd></div>
         {{ end }}
       </dl>
 
@@ -80,7 +80,9 @@
       {{ end }}
 
       {{ with .Params.event_rsvp_url }}
-        <p class="facts__actions"><a class="btn" href="{{ . }}?utm_source=svissa_website">RSVP</a></p>
+        {{- $q := "?" -}}
+        {{- if strings.Contains . "?" -}}{{ $q = "&" -}}{{ end }}
+        <p class="facts__actions"><a class="btn" href="{{ . }}{{ $q }}utm_source=svissa_website">RSVP</a></p>
       {{ end }}
     </aside>
   </div>

@@ -44,9 +44,12 @@
     {{- end }}
 
     {{- if $showRegister }}
-      <a class="btn" href="{{ if or (eq $p.Type "meetings") (eq $p.Type "meeting") }}{{ $p.Params.event_rsvp_url }}?utm_source=svissa_website{{ else }}{{ $p.RelPermalink }}{{ end }}">
-        Register →
-      </a>
+      {{- with $p.Params.event_rsvp_url -}}
+      {{- $rsvp := $p.Params.event_rsvp_url -}}
+      {{- $q := "?" -}}
+      {{- if strings.Contains $rsvp "?" -}}{{ $q = "\u0026" -}}{{ end }}
+      <a class="btn" href="{{ $rsvp }}{{ $q }}utm_source=svissa_website">Register →</a>
+      {{- end -}}
     {{- end -}}
   </div>
 </article>

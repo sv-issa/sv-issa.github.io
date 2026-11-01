@@ -23,6 +23,11 @@ enableGitInfo = true
   weight = 30
 
 [[menus.footer]]
+  name = 'Articles'
+  pageRef = '/article'
+  weight = 35
+
+[[menus.footer]]
   name = 'Board'
   pageRef = '/about/sv-issa-board'
   weight = 40

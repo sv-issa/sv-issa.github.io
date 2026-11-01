@@ -22,6 +22,7 @@ params:
       link: 
       image: /images/
       description: 
+  event_map_url:
 
 ---
 

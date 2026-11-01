@@ -20,9 +20,9 @@
         {{- with .Params.event_location }} · {{ . }}{{ end }}
       </p>
       {{ with .Params.event_rsvp_url }}
-        <a class="btn" href="{{ . }}?utm_source=svissa_website">Register →</a>
-      {{ else }}
-        <a class="btn" href="{{ .RelPermalink }}">Register →</a>
+        {{- $q := "?" -}}
+        {{- if strings.Contains . "?" -}}{{ $q = "&" -}}{{ end }}
+        <a class="btn" href="{{ . }}{{ $q }}utm_source=svissa_website">Register →</a>
       {{ end }}
 
       {{- with $rest }}

@@ -105,7 +105,12 @@ FLAG: potential-volatile-memory-persistence – link: constant contact removed
 FLAG: what-real-face-shadow-it – link: constant contact removed
 FLAG: moving-reactive-proactive-security – link: constant contact removed
 FLAG: march-member-feedback-meeting – link: constant contact removed
-- [ ] meetings-18  (6 pages, ~34 KB article HTML)
+- [x] meetings-18  (6 pages, ~34 KB article HTML)
+  Converted: using-hackers-own-methods-tools-defeat-persistent-adversaries, behavioral-analytics-intellectual-property-protection, 2013-holiday-party, building-security-program-protects-organization-s-most-critical-assets, metrics-matter-security-risk-analytics, art-selling-security-peers-executive-management
+FLAG: using-hackers-own-methods-tools-defeat-persistent-adversaries – link: constant contact removed
+FLAG: behavioral-analytics-intellectual-property-protection – link: constant contact removed
+FLAG: 2013-holiday-party – image: rsvp-button.jpg already exists in static/images
+FLAG: art-selling-security-peers-executive-management – link: constant contact removed
 - [ ] meetings-19  (8 pages, ~34 KB article HTML)
 - [ ] meetings-20  (3 pages, ~10 KB article HTML)
 

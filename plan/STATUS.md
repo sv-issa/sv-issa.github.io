@@ -90,13 +90,21 @@ FLAG: eliminating-operational-blindspots-incident-exchange-and-collaboration –
   FLAG: Utilizing-Contextual-Awareness-Combat-Cyber-Threats – image: sv-issa-conference-location.png copied as /images/sv-issa-conference-location.png
 - [x] meetings-16  (8 pages, ~32 KB article HTML)
   Converted: 2014-holiday-party, applying-critical-controls-combat-advanced-threats-and-secure-your-infrastructure, automating-security-across-cloud-services, considerations-cloud-and-mobile-security-0, no-april-meeting-due-rsa, no-meeting-june-see-you-cornerstones-trust, protecting-and-monitoring-privileged-pathway-new-layer-security-protect-heart-enterprise, twenty-steps-towards-strong-cyber-security-program
-FLAG: 2014-holiday-party – link: constantcontact.com image in body dropped
 FLAG: applying-critical-controls-combat-advanced-threats-and-secure-your-infrastructure – link: constant contact removed
 FLAG: automating-security-across-cloud-services – link: constant contact removed
 FLAG: considerations-cloud-and-mobile-security-0 – link: constant contact removed
 FLAG: protecting-and-monitoring-privileged-pathway-new-layer-security-protect-heart-enterprise – link: constant contact removed
 FLAG: twenty-steps-towards-strong-cyber-security-program – link: constant contact removed
-- [ ] meetings-17  (8 pages, ~32 KB article HTML)
+- [x] meetings-17  (8 pages, ~32 KB article HTML)
+  Converted: open-forum-past-present-and-future-information-security, cons-frauds-and-flimflam-examination-social-media-and-mobile-application-scams, data-protection-and-mobile-payments, considerations-cloud-and-mobile-security, potential-volatile-memory-persistence, what-real-face-shadow-it, moving-reactive-proactive-security, march-member-feedback-meeting
+FLAG: open-forum-past-present-and-future-information-security – link: constant contact removed
+FLAG: cons-frauds-and-flimflam-examination-social-media-and-mobile-application-scams – link: constant contact removed
+FLAG: data-protection-and-mobile-payments – link: constant contact removed
+FLAG: considerations-cloud-and-mobile-security – link: constant contact removed
+FLAG: potential-volatile-memory-persistence – link: constant contact removed
+FLAG: what-real-face-shadow-it – link: constant contact removed
+FLAG: moving-reactive-proactive-security – link: constant contact removed
+FLAG: march-member-feedback-meeting – link: constant contact removed
 - [ ] meetings-18  (6 pages, ~34 KB article HTML)
 - [ ] meetings-19  (8 pages, ~34 KB article HTML)
 - [ ] meetings-20  (3 pages, ~10 KB article HTML)

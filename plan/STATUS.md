@@ -121,7 +121,10 @@ FLAG: art-selling-security-peers-executive-management – link: constant contact
 - FLAG: why-your-enterprise-should-be-managing-its-certificates – link: pdf not in crawl, will 404 after cutover
 
 ## Stage 4 – Jobs (99)
-- [ ] jobs-01  (9 pages, ~36 KB article HTML)
+- [x] jobs-01  (9 pages, ~36 KB article HTML)
+
+### Batch jobs-01 flags
+(none - all 9 job posts converted cleanly; no Constant Contact links, no images to copy, no map iframes)
 - [ ] jobs-02  (8 pages, ~38 KB article HTML)
 - [ ] jobs-03  (8 pages, ~32 KB article HTML)
 - [ ] jobs-04  (9 pages, ~36 KB article HTML)

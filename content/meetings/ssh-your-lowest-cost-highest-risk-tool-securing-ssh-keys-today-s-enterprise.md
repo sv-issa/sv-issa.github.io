@@ -1,5 +1,5 @@
 ---
-title: SSH: Your Lowest Cost, Highest Risk Tool - Securing SSH Keys in Today's Enterprise
+title: 'SSH: Your Lowest Cost, Highest Risk Tool - Securing SSH Keys in Today's Enterprise'
 draft: false
 date: 2018-02-02 10:16:25-08:00
 layout: meetings

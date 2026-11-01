@@ -24,7 +24,7 @@
 ## Stage 2 – Static pages
 - [ ] education  - [ ] GRIT training  - [ ] Education nav item
 
-## Stage 3 – Meetings (142)
+## Stage 3 – Meetings (142) ✅ COMPLETE
 - [x] meetings-01  (5 pages, ~33 KB article HTML)
 - [x] meetings-02  (8 pages, ~33 KB article HTML)
 - [x] meetings-03  (4 pages, ~23 KB article HTML)

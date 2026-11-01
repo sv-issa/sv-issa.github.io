@@ -111,7 +111,10 @@ FLAG: using-hackers-own-methods-tools-defeat-persistent-adversaries – link: co
 FLAG: behavioral-analytics-intellectual-property-protection – link: constant contact removed
 FLAG: 2013-holiday-party – image: rsvp-button.jpg already exists in static/images
 FLAG: art-selling-security-peers-executive-management – link: constant contact removed
-- [ ] meetings-19  (8 pages, ~34 KB article HTML)
+- [x] meetings-19  (8 pages, ~34 KB article HTML)
+
+### Batch 19 flags (meetings-19)
+(none - all 8 pages converted cleanly; no Constant Contact RSVP links (pre-2024), map iframes dropped with links as event_map_url, no speaker images to copy)
 - [ ] meetings-20  (3 pages, ~10 KB article HTML)
 
 ## Stage 4 – Jobs (99)

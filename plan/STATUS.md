@@ -177,7 +177,7 @@ FLAG: past-president-john-millican-celebration-life – image: memorial photo mo
 (none - all 9 articles converted cleanly; images verified)
 
 ## Stage 6 – Final QA
-- [ ] 6A automated  - [ ] 6B coverage + spot checks  - [ ] handoff report
+- [x] 6A automated  - [x] 6B coverage + spot checks  - [x] handoff report (plan/STAGE-6-QA.md)
 
 ## Flags / theme requests collected
 (none yet)

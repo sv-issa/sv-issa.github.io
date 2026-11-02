@@ -143,8 +143,14 @@ none - all 10 pages are valid job postings; information-security-officer has min
 - [x] jobs-06  (6 pages, ~37 KB article HTML)
 ### Batch jobs-06 flags
 (none - all 6 job posts converted cleanly; no Constant Contact links, no images to copy, no map iframes)
-- [ ] jobs-07  (10 pages, ~29 KB article HTML)
-- [ ] jobs-08  (8 pages, ~39 KB article HTML)
+- [x] jobs-07  (10 pages, ~29 KB article HTML)
+### Batch jobs-07 flags
+
+FLAG: network-security-architect-role-and-others – other: no job_company in source (recruiter contact post)
+- [x] jobs-08  (8 pages, ~39 KB article HTML)
+### Batch jobs-08 flags
+
+FLAG: security-assessment-consultant-cissp-ceh-contract-sacramento – other: no job_company in source (unattributed contract posting)
 - [ ] jobs-09  (7 pages, ~37 KB article HTML)
 - [ ] jobs-10  (9 pages, ~39 KB article HTML)
 - [ ] jobs-11  (8 pages, ~38 KB article HTML)

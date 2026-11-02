@@ -1,5 +1,5 @@
 ---
-title: "Issa International"
+title: "ISSA International"
 date: 2025-10-26T19:25:41-07:00
 draft: false
 ---
@@ -15,14 +15,13 @@ The primary goal of the Information Systems Security Association, Inc. (ISSA) is
 
 Address
 
-ISSA Inc.
-
-9220 SW Barbur Blvd #119-333
-Portland, OR 97219
+ISSA Inc.  
+9220 SW Barbur Blvd #119-333  
+Portland, OR 97219  
 
 Phone
 
-Toll-free: (866) 349-5818 (from within USA only)
-Seattle Local : +1 (206) 388-4584
-Fax: +1 (206) 299-3366
+Toll-free: (866) 349-5818 (from within USA only)  
+Seattle Local : +1 (206) 388-4584  
+Fax: +1 (206) 299-3366  
 

@@ -164,10 +164,17 @@ FLAG: security-assessment-consultant-cissp-ceh-contract-sacramento – other: no
 ### Batch jobs-12 flags
 (none - all 7 job posts converted; no Constant Contact links, no images to copy)
 
-## Stage 5 – Articles (29)
-- [ ] articles-01  (10 pages, ~22 KB article HTML)
-- [ ] articles-02  (10 pages, ~16 KB article HTML)
-- [ ] articles-03  (9 pages, ~15 KB article HTML)
+## Stage 5 2013 Articles (29) 2705 COMPLETE
+- [x] articles-01  (10 pages, ~22 KB article HTML)
+### Batch articles-01 flags
+(none - all 10 articles converted cleanly; no Constant Contact links to strip, images verified)
+- [x] articles-02  (10 pages, ~16 KB article HTML)
+### Batch articles-02 flags
+FLAG: james-carr – image: memorial photo moved after first prose paragraph per CONVENTIONS
+FLAG: past-president-john-millican-celebration-life – image: memorial photo moved after first prose paragraph per CONVENTIONS
+- [x] articles-03  (9 pages, ~15 KB article HTML)
+### Batch articles-03 flags
+(none - all 9 articles converted cleanly; images verified)
 
 ## Stage 6 – Final QA
 - [ ] 6A automated  - [ ] 6B coverage + spot checks  - [ ] handoff report

@@ -151,8 +151,12 @@ FLAG: network-security-architect-role-and-others – other: no job_company in so
 ### Batch jobs-08 flags
 
 FLAG: security-assessment-consultant-cissp-ceh-contract-sacramento – other: no job_company in source (unattributed contract posting)
-- [ ] jobs-09  (7 pages, ~37 KB article HTML)
-- [ ] jobs-10  (9 pages, ~39 KB article HTML)
+- [x] jobs-09  (7 pages, ~37 KB article HTML)
+### Batch jobs-09 flags
+(none - all 7 job posts converted cleanly; no Constant Contact links, no images to copy, no map iframes)
+- [x] jobs-10  (9 pages, ~39 KB article HTML)
+### Batch jobs-10 flags
+(none - all 9 job posts converted cleanly; no Constant Contact links, no images to copy, no map iframes)
 - [ ] jobs-11  (8 pages, ~38 KB article HTML)
 - [ ] jobs-12  (7 pages, ~25 KB article HTML)
 

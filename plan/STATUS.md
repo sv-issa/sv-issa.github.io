@@ -157,8 +157,12 @@ FLAG: security-assessment-consultant-cissp-ceh-contract-sacramento – other: no
 - [x] jobs-10  (9 pages, ~39 KB article HTML)
 ### Batch jobs-10 flags
 (none - all 9 job posts converted cleanly; no Constant Contact links, no images to copy, no map iframes)
-- [ ] jobs-11  (8 pages, ~38 KB article HTML)
-- [ ] jobs-12  (7 pages, ~25 KB article HTML)
+- [x] jobs-11  (8 pages, ~38 KB article HTML)
+### Batch jobs-11 flags
+(none - all 8 job posts converted cleanly; no Constant Contact links, no images to copy, no map iframes)
+- [x] jobs-12  (7 pages, ~25 KB article HTML)
+### Batch jobs-12 flags
+(none - all 7 job posts converted; no Constant Contact links, no images to copy)
 
 ## Stage 5 – Articles (29)
 - [ ] articles-01  (10 pages, ~22 KB article HTML)

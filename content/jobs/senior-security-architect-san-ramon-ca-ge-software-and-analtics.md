@@ -44,7 +44,7 @@ As a Senior Security Architect, you will:
 
 **QUALIFICATIONS / REQUIREMENTS:**
 
-- Bachelor's degree in Computer Science or related field with a minimum of 12 years of experience in delivering security solutions as part of **<u>product development</u>**
+- Bachelor's degree in Computer Science or related field with a minimum of 12 years of experience in delivering security solutions as part of product development
 - Knowledge of Identity and Access Management (IAM) solutions to include common authentication architecture, user provisioning and de-provisioning architecture and implementation, Role Based Access Control (RBAC), password management systems, as well as knowledge of Active Directory and Lightweight Directory Access Protocol (LDAP).
 - Demonstrated experience in secure web development and secure web design patterns
 - Deep understanding of common internet protocols: TCP/IP, HTTP; HTTPS; FTP, SFTP, SSH
@@ -63,7 +63,7 @@ As a Senior Security Architect, you will:
 **DESIRED CHARACTARISTICS:**
 
 - Knowledge of Single Sign-On solutions to include relevant standards and technologies: SAML, OAuth, JSON Web Token (JWT), WS-Federation, WS-Trust, XML Signature
-- Experience with **<em><u>XML Firewall appliance solutions to include relevant standards and technologies:</u></em>** SAML, XACML, WS-Security, WS-Trust, WS-Policy
+- Experience with *XML Firewall appliance solutions to include relevant standards and technologies:* SAML, XACML, WS-Security, WS-Trust, WS-Policy
 - Knowledge of SOAP web services, REST web services, Web Service stacks, Web Service Management, and SOA Patterns
 - Experience in Scanning and Vulnerability to include source code scanning for the OWASP topten, web endpoint scanning, system benchmarks, and penetration testing.
 - Knowledge of security auditing requirements and technologies

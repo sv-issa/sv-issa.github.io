@@ -917,10 +917,10 @@ a:visited {
 }
 
 .sponsors img {
+  height: 2.5rem;
   width: auto;
-  height: auto;
   max-width: 8rem;
-  max-height: 2.5rem; /* scale proportionally, never distort */
+  /* scale proportionally, never distort */
 }
 
 .plain-list {

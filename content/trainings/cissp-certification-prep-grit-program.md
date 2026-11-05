@@ -1,7 +1,7 @@
 ---
 title: "CISSP Certification Prep - G.R.I.T. Program"
 date: 2026-07-22T17:11:09-07:00
-expiryDate: 2027-12-31T23:59:00-07:00
+expiryDate: 2026-09-17T23:59:00-07:00
 draft: false
 tags: []
 aliases: [/training/cissp-certification-prep-grit-program/]

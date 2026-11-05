@@ -40,7 +40,7 @@ fi
 
 # Verify installation
 echo -e "\n${BLUE}Verifying installation...${NC}"
-BROWSER_PATH="/root/.cache/ms-playwright/chromium_headless_shell-*/chrome-headless-shell"
+BROWSER_PATH="$HOME/.cache/ms-playwright/chromium_headless_shell-*/chrome-headless-shell"
 if ls $BROWSER_PATH &> /dev/null; then
   echo -e "${GREEN}✓ Chromium browser installed${NC}"
 else

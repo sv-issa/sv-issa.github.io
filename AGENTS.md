@@ -62,6 +62,30 @@ Content lives in `content/` directory with section subdirectories (meetings, job
 
 - Use the shell tool directly instead of execute code mode, will get `ReferenceError: Unknown identifier 'require'.`
 
+### Adding New Meetings from Luma Links
+
+When adding a new meeting from a Luma event URL:
+
+1. **Fetch the page content:**
+   ```bash
+   curl -s https://luma.com/{event-id}
+   ```
+2. **Extract event data** from the response (search for JSON-LD/structured data, `__NEXT_DATA__`, or inline JSON containing fields like `name`, `startDate`, `endDate`, `description`, speaker info)
+3. **Create the meeting file:**
+   ```bash
+   hugo new meetings/{slug-name}.md
+   ```
+4. **Fill in the frontmatter** and body:
+   - `event_date`: Use an ISO format date (e.g., `"2026-11-17"`) — not a human-readable string, or Hugo will fail to parse it
+   - `event_time_start`, `event_time_end`: Human-readable times (e.g., `"5:30 PM"`)
+   - `event_rsvp_url`: The Luma URL
+   - `event_location`: If the venue is "Registered guests only", set `event_address: ""`
+   - Speaker info from the page; use local images when available (e.g., `/images/speaker.jpg`, `/images/sponsor-logo.svg`)
+5. **Build to verify**
+   ```bash
+   hugo --gc --minify
+   ```
+
 
 ## Version Notes
 

@@ -128,6 +128,28 @@ Then edit the file to add:
 - Event description
 - Recording access (if applicable)
 
+#### From a Luma Event Link
+
+When the event is hosted on [Luma](https://luma.com), extract the content programmatically:
+
+```bash
+# 1. Fetch the page
+curl -s https://luma.com/{event-slug}
+```
+
+The response contains structured JSON data with the event details (name, dates, description, speaker bios). Use `grep` or `jq` to extract it:
+
+```bash
+curl -s https://luma.com/b26e746k | grep -oP '"name":"[^"]*"' 
+curl -s https://luma.com/b26e746k | grep -oP '"description":\{[^}]+\}'
+```
+
+Key frontmatter notes when porting from Luma:
+- **`event_date`**: Must be an ISO date string in quotes (e.g., `"2026-11-17"`). Human-readable dates will cause Hugo to fail with a parse error.
+- **`event_location`**: If Luma shows "Registered guests only", leave `event_address: ""` empty.
+- **Speaker images / sponsor logos**: Place in `static/images/` and reference as `/images/filename.ext`.
+- For free events, set the appropriate ticket info but it doesn't affect site rendering.
+
 ### Creating Job Listings
 
 Use the job archetype:

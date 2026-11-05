@@ -1,7 +1,7 @@
 ---
 title: "Education"
 date: 2008-09-18T00:08:51-07:00
-draft: false
+draft: true
 ---
 
 The following security education programs are being offered at universities and colleges in Northern California. The listing of these programs does not imply endorsement by Silicon Valley ISSA. This is only a first cut at creating this list. If members are aware of additional security programs in the Bay Area, please send an email to the Education Director at [educationdirector@sv-issa.org](mailto:educationdirector@sv-issa.org).

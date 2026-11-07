@@ -48,7 +48,7 @@
       {{- $rsvp := $p.Params.event_rsvp_url -}}
       {{- $q := "?" -}}
       {{- if strings.Contains $rsvp "?" -}}{{ $q = "\u0026" -}}{{ end }}
-      <a class="btn" href="{{ $rsvp }}{{ $q }}utm_source=svissa_website">Register →</a>
+      <a class="btn" href="{{ $rsvp }}{{ $q }}utm_source=svissa_website" target="_blank" rel="noopener noreferrer">Register →</a>
       {{- end -}}
     {{- end -}}
   </div>

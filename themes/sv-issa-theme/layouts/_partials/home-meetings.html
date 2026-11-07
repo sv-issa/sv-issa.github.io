@@ -22,7 +22,7 @@
       {{ with .Params.event_rsvp_url }}
         {{- $q := "?" -}}
         {{- if strings.Contains . "?" -}}{{ $q = "&" -}}{{ end }}
-        <a class="btn" href="{{ . }}{{ $q }}utm_source=svissa_website">Register →</a>
+        <a class="btn" href="{{ . }}{{ $q }}utm_source=svissa_website" target="_blank" rel="noopener noreferrer">Register →</a>
       {{ end }}
 
       {{- with $rest }}

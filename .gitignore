@@ -16,3 +16,4 @@ plan/
 
 # Old site crawl (read-only source)
 oldsite/
+.pi

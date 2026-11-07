@@ -1677,3 +1677,13 @@ details[open] .board-member__summary::before {
   margin-top: var(--space-2);
   margin-bottom: 0;
 }
+
+/* Past meetings pagination */
+.meetings-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+.pagination-pages { font-size: 0.875rem; }

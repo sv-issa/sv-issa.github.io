@@ -11,61 +11,49 @@
 
   {{ $all := where site.RegularPages "Section" "meetings" }}
 
-  {{ $meetings := slice }}
   {{ if $futureOnly }}
-    {{ $meetings = where $all "Params.event_date" ">" $today }}
-  {{ else }}
-    {{ $meetings = where $all "Params.event_date" "<=" $today }}
-  {{ end }}
-
-  {{ $meetings = sort $meetings "Params.event_date" $dateSort }}
-
-  {{ if gt (len $meetings) 0 }}
-
-    {{ if $futureOnly }}
-      {{/* ── UPCOMING: full-width cards (typically 1–2) ── */}}
+    {{ $upcoming := sort (where $all "Params.event_date" ">" $today) "Params.event_date" $dateSort }}
+    {{ if $upcoming }}
       <h2 class="visually-hidden">Upcoming Meetings</h2>
       <div class="meetings-upcoming-list">
-        {{ range $meetings }}
+        {{ range $upcoming }}
           {{ partial "meeting-card.html" (dict "page" . "showRegister" true) }}
         {{ end }}
       </div>
-
     {{ else }}
-      {{/* ── PAST: two-column grid grouped by year ── */}}
+      <p>No upcoming meetings found.</p>
+    {{ end }}
+
+  {{ else }}
+    {{ $past := sort (where $all "Params.event_date" "<=" $today) "Params.event_date" $dateSort }}
+    {{ if $past }}
       <h2 class="visually-hidden">Past Meetings</h2>
+      {{ $paginator := .Paginate $past 20 }}
 
-      {{/* Group by year: build a dict keyed by year string */}}
-      {{ $byYear := dict }}
-      {{ range $meetings }}
-        {{ $y := .Params.event_date | time.Format "2006" }}
-        {{ $group := index $byYear $y | default slice }}
-        {{ $group = $group | append . }}
-        {{ $byYear = merge $byYear (dict $y $group) }}
-      {{ end }}
-
-      {{/* Collect and sort year keys descending */}}
-      {{ $years := slice }}
-      {{ range $k, $v := $byYear }}
-        {{ $years = $years | append $k }}
-      {{ end }}
-      {{ $years = sort $years "value" "desc" }}
-
-      {{ range $years }}
-        {{ $y := . }}
-        {{ $group := index $byYear $y }}
-        <section class="meetings-year" aria-labelledby="year-{{ $y }}">
-          <h2 class="meetings-year__heading" id="year-{{ $y }}">{{ $y }}</h2>
+      {{ range $paginator.Pages.GroupByParamDate "event_date" "2006" $dateSort }}
+        <section class="meetings-year" aria-labelledby="year-{{ .Key }}">
+          <h2 class="meetings-year__heading" id="year-{{ .Key }}">{{ .Key }}</h2>
           <div class="meetings-past-grid">
-            {{ range $group }}
+            {{ range .Pages }}
               {{ partial "meeting-card.html" (dict "page" . "summaryLen" 120 "showRegister" false "showLocation" false) }}
             {{ end }}
           </div>
         </section>
       {{ end }}
-    {{ end }}
 
-  {{ else }}
-    <p>No {{ if $futureOnly }}upcoming{{ else }}past{{ end }} meetings found.</p>
+      {{ if gt $paginator.TotalPages 1 }}
+        <nav class="meetings-pagination" aria-label="Past meetings pagination">
+          {{ if $paginator.HasPrev }}
+            <a class="pagination-link" rel="prev" href="{{ $paginator.Prev.URL }}">← Newer</a>
+          {{ end }}
+          <span class="pagination-pages">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+          {{ if $paginator.HasNext }}
+            <a class="pagination-link" rel="next" href="{{ $paginator.Next.URL }}">Older →</a>
+          {{ end }}
+        </nav>
+      {{ end }}
+    {{ else }}
+      <p>No past meetings found.</p>
+    {{ end }}
   {{ end }}
 {{ end }}
